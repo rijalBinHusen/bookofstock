@@ -1,6 +1,8 @@
 <template>
-  <Sidebar color="bg-green-400" :navbar="navbar" />
-  <Home />
+  <div class="flex">
+    <Sidebar color="bg-green-400" :navbar="navbar" />
+    <Home />
+  </div>
 </template>
 
 <script>
