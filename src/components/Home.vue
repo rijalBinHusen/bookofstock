@@ -1,6 +1,17 @@
 <template>
-  <div class="bg-black bg-opacity-50 w-full">
-    <h1>Hello wordl!</h1>
+  <div class="bg-black bg-opacity-50 w-full pl-4">
+    <component :is="comp"></component>
   </div>
 </template>
-<script setup></script>
+<script>
+import ColorSetting from "./ColorSetting.vue";
+export default {
+  name: "Home",
+  props: {
+    comp: String,
+  },
+  components: {
+    ColorSetting,
+  },
+};
+</script>

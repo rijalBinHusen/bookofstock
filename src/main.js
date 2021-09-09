@@ -14,6 +14,8 @@ import {
   faCloudUploadAlt,
   faTimesCircle,
   faArrowCircleRight,
+  faBrush,
+  faCopyright,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
@@ -27,7 +29,9 @@ library.add(
   faFileDownload,
   faCloudUploadAlt,
   faTimesCircle,
-  faArrowCircleRight
+  faArrowCircleRight,
+  faBrush,
+  faCopyright
 );
 
 createApp(App)

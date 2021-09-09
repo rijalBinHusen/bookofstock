@@ -32,15 +32,13 @@
       </a>
     </nav>
 
-    <div v-if="status" class="absolute bottom-0 my-10">
-      <a
-        class="flex items-center py-2 px-8 text-gray-500 hover:text-gray-600"
-        href="#"
-      >
-        <span class="mx-4 font-medium">
-          Set color: <input type="color" />
-        </span>
-      </a>
+    <div v-if="status" class="absolute bottom-0 text-gray-500 my-10 ml-4">
+      <span class="font-medium">
+        <p>
+          Nocopyright
+          <font-awesome-icon icon="copyright" />
+        </p>
+      </span>
     </div>
   </div>
 </template>
@@ -64,6 +62,7 @@ export default {
     },
     moveNav(name) {
       this.currentNav = name;
+      this.$emit("currentNav", name);
     },
   },
 };

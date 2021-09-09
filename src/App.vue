@@ -1,7 +1,11 @@
 <template>
   <div class="flex">
-    <Sidebar color="bg-green-400" :navbar="navbar" />
-    <Home />
+    <Sidebar
+      @currentNav="currentNav($event)"
+      color="bg-green-400"
+      :navbar="navbar"
+    />
+    <Home :comp="nav" />
   </div>
 </template>
 
@@ -22,12 +26,19 @@ export default {
         { name: "MasterItems", title: "Master Items", icon: "layer-group" },
         { name: "Importer", title: "Importer", icon: "file-upload" },
         { name: "Exporter", title: "Exporter", icon: "file-download" },
+        { name: "ColorSetting", title: "Color setting", icon: "brush" },
       ],
+      nav: "",
     };
   },
   components: {
     Sidebar,
     Home,
+  },
+  methods: {
+    currentNav(name) {
+      this.nav = name;
+    },
   },
 };
 </script>
