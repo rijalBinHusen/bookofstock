@@ -1,0 +1,36 @@
+{
+  "name": "bookofstock",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.36",
+    "@fortawesome/free-solid-svg-icons": "^5.15.4",
+    "@fortawesome/vue-fontawesome": "^3.0.0-4",
+    "localbase": "^0.7.5",
+    "vue": "^3.2.6",
+    "vuex": "^4.0.0-0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^1.6.1",
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-plugin-vuex": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "@vue/compiler-sfc": "^3.2.6",
+    "@vue/eslint-config-prettier": "^6.0.0",
+    "autoprefixer": "^10.3.4",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.7.2",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-vue": "^7.0.0",
+    "postcss": "^8.3.6",
+    "prettier": "^2.2.1",
+    "tailwindcss": "^2.2.14",
+    "vite": "^2.5.4",
+    "vue-cli-plugin-fontawesome": "~0.3.1"
+  }
+}
