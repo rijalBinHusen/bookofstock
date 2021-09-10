@@ -4,12 +4,15 @@
   </div>
 </template>
 <script>
+import Incoming from "./Incoming.vue";
 export default {
   name: "Home",
   props: {
     comp: String,
     color: Object,
   },
-  components: {},
+  components: {
+    Incoming,
+  },
 };
 </script>

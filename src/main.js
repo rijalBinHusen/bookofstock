@@ -14,7 +14,7 @@ import {
   faCloudUploadAlt,
   faTimesCircle,
   faArrowCircleRight,
-  faBrush,
+  faPlusSquare,
   faCopyright,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
@@ -30,7 +30,7 @@ library.add(
   faCloudUploadAlt,
   faTimesCircle,
   faArrowCircleRight,
-  faBrush,
+  faPlusSquare,
   faCopyright
 );
 
