@@ -13,7 +13,7 @@
           w-60
           mr-2
         "
-        v-model="datepicked"
+        v-model="selected"
       ></datepicker>
       Shift :
       <select
@@ -77,7 +77,7 @@ export default {
   name: "incoming",
   data() {
     return {
-      datepicked: "",
+      selected: new Date(),
     };
   },
 };
