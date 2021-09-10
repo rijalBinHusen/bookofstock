@@ -1,8 +1,5 @@
 <template>
-  <div
-    :class="['h-screen', status ? 'w-80' : 'w-16 text-center']"
-    :style="{ backgroundColor: color.sidebar }"
-  >
+  <div :class="['h-screen bg-green-400', status ? 'w-80' : 'w-16 text-center']">
     <div :class="['p-2 border-b-2 border-black', status ? 'text-right ' : '']">
       <font-awesome-icon
         v-if="status"
@@ -30,7 +27,7 @@
         ]"
         href="#"
       >
-        <font-awesome-icon :style="{ color: color.icon }" :icon="nav.icon" />
+        <font-awesome-icon :icon="nav.icon" />
         <span v-if="status" class="ml-2 mb-2"> {{ nav.title }}</span>
       </a>
     </nav>
@@ -49,7 +46,6 @@
 <script>
 export default {
   props: {
-    color: String,
     navbar: Array,
   },
   name: "Sidebar",
