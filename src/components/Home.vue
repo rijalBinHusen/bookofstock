@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-black bg-opacity-50 w-full pl-4">
+  <div :style="{ backgroundColor: color.mainPage }" class="w-full pl-4">
     <component :is="comp"></component>
   </div>
 </template>
@@ -9,6 +9,7 @@ export default {
   name: "Home",
   props: {
     comp: String,
+    color: Object,
   },
   components: {
     ColorSetting,

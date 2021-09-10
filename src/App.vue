@@ -1,11 +1,7 @@
 <template>
   <div class="flex">
-    <Sidebar
-      @currentNav="currentNav($event)"
-      color="bg-green-400"
-      :navbar="navbar"
-    />
-    <Home :comp="nav" />
+    <Sidebar @currentNav="currentNav($event)" :color="color" :navbar="navbar" />
+    <Home :color="color" :comp="nav" />
   </div>
 </template>
 
@@ -38,6 +34,11 @@ export default {
   methods: {
     currentNav(name) {
       this.nav = name;
+    },
+  },
+  computed: {
+    color() {
+      return this.$store.getters["color"];
     },
   },
 };

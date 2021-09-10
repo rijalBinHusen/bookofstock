@@ -6,12 +6,7 @@
       type="color"
       class="w-20 hidden rounded mr-2"
     />
-    <font-awesome-icon
-      :style="{ color: color }"
-      icon="brush"
-      class="cursor-pointer"
-      @click="show"
-    />
+    <font-awesome-icon icon="brush" class="cursor-pointer" @click="show" />
   </span>
 </template>
 
@@ -19,16 +14,14 @@
 export default {
   name: "ColorPicker",
   data() {
-    return {
-      color: "",
-    };
+    return {};
   },
   methods: {
     show() {
       this.$refs.colPick.click();
     },
     setColor(ev) {
-      this.color = ev;
+      this.$emit("setColor", ev);
     },
   },
 };

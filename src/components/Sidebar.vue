@@ -1,5 +1,8 @@
 <template>
-  <div :class="['h-screen', color, status ? 'w-80' : 'w-16 text-center']">
+  <div
+    :class="['h-screen', status ? 'w-80' : 'w-16 text-center']"
+    :style="{ backgroundColor: color.sidebar }"
+  >
     <div :class="['p-2 border-b-2 border-black', status ? 'text-right ' : '']">
       <font-awesome-icon
         v-if="status"
@@ -27,7 +30,7 @@
         ]"
         href="#"
       >
-        <font-awesome-icon :icon="nav.icon" />
+        <font-awesome-icon :style="{ color: color.icon }" :icon="nav.icon" />
         <span v-if="status" class="ml-2 mb-2"> {{ nav.title }}</span>
       </a>
     </nav>
