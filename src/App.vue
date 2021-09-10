@@ -1,7 +1,8 @@
 <template>
-  <div class="flex">
+  <div class="flex w-full h-full">
     <Sidebar @currentNav="currentNav($event)" :navbar="navbar" />
     <Home :comp="nav" />
+    <Modal />
   </div>
 </template>
 
@@ -10,6 +11,7 @@
 // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
 import Home from "./components/Home.vue";
 import Sidebar from "./components/Sidebar.vue";
+import Modal from "./components/Modal.vue";
 
 export default {
   name: "App",
@@ -29,6 +31,7 @@ export default {
   components: {
     Sidebar,
     Home,
+    Modal,
   },
   methods: {
     currentNav(name) {

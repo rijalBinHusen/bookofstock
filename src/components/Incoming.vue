@@ -39,10 +39,10 @@
           bg-white bg-opacity-50
           rounded
           focus:outline-none focus:bg-white
-          w-20
           cursor-pointer
+          px-3
         "
-        value="Cari"
+        value="Tampilkan"
       />
     </div>
 
