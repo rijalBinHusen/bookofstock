@@ -2,70 +2,28 @@
   <div id="incoming_main" class="mx-auto">
     <div id="incoming_form" class="mt-4 flex gap-2 text-2xl">
       Tanggal :
-      <datepicker
-        class="
-          py-1
-          text-black-700
-          bg-white bg-opacity-50
-          rounded
-          focus:outline-none focus:bg-white
-          px-5
-          w-60
-          mr-2
-        "
-        v-model="selected"
-      ></datepicker>
+      <datepicker class="btn btn-primary" v-model="selected"></datepicker>
       Shift :
       <select
-        class="
-          py-1
-          text-black-700
-          bg-white bg-opacity-50
-          rounded
-          focus:outline-none focus:bg-white
-          px-5
-          w-20
-        "
+        class="select-md select select-info select-bordered w-20"
         id="inventory_form_shift"
       >
         <option>1</option>
         <option>2</option>
         <option>3</option>
       </select>
-      <input
-        type="submit"
-        class="
-          text-black-700
-          bg-white bg-opacity-50
-          rounded
-          focus:outline-none focus:bg-white
-          cursor-pointer
-          px-3
-        "
-        value="Tampilkan"
-      />
+      <input type="submit" class="btn btn-primary" value="Tampilkan" />
     </div>
 
     <div id="incoming_form_add" class="container text-center my-4">
       <span class="text-3xl font-bold"> Incoming product </span>
 
-      <button
-        class="
-          mt-4
-          text-2xl
-          px-3
-          py-1
-          text-black-700
-          bg-white bg-opacity-50
-          rounded
-          focus:outline-none focus:bg-white
-        "
-      >
+      <a class="btn btn-primary" href="#my-modal">
         <font-awesome-icon
           icon="plus-square"
           style="font-size: 30px; color: black"
         />
-      </button>
+      </a>
     </div>
 
     <div id="incoming_table">incoming table</div>

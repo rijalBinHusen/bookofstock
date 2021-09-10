@@ -7,8 +7,8 @@
         quasi eligendi. Saepe velit autem minima.
       </p>
       <div class="modal-action">
-        <a href="/components/modal#" class="btn btn-primary">Accept</a>
-        <a href="/components/modal#" class="btn">Close</a>
+        <a href="#" class="btn btn-primary">Accept</a>
+        <a href="#" class="btn">Close</a>
       </div>
     </div>
   </div>

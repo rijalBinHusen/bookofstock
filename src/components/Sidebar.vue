@@ -1,6 +1,6 @@
 <template>
-  <div :class="['h-screen bg-green-400', status ? 'w-80' : 'w-16 text-center']">
-    <div :class="['p-2 border-b-2 border-black', status ? 'text-right ' : '']">
+  <!-- <div :class="['h-screen bg-green-400', status ? 'w-80' : 'w-16 text-center']"> -->
+  <!-- <div :class="['p-2 border-b-2 border-black', status ? 'text-right ' : '']">
       <font-awesome-icon
         v-if="status"
         @click="hide"
@@ -39,6 +39,39 @@
           <font-awesome-icon icon="copyright" />
         </p>
       </span>
+    </div> -->
+  <!-- </div> -->
+  <div class="bg-base-200">
+    <div
+      :class="[
+        'bottom-0 w-full h-auto p-2 text-2xl',
+        status ? 'text-right ' : 'text-center',
+      ]"
+    >
+      <font-awesome-icon
+        v-if="status"
+        @click="hide"
+        class="cursor-pointer"
+        icon="times-circle"
+      />
+      <font-awesome-icon
+        v-if="!status"
+        class="cursor-pointer"
+        @click="hide"
+        icon="arrow-circle-right"
+      />
+    </div>
+    <div class="py-4 artboard-demo h-screen">
+      <ul
+        :class="['menu py-4 rounded-box', status ? 'w-60' : 'w-16 text-center']"
+      >
+        <li class="hover-bordered">
+          <a v-for="nav in navbar" :key="nav" @click="moveNav(nav.name)">
+            <font-awesome-icon class="mr-2" :icon="nav.icon" />
+            {{ status ? nav.title : "" }}
+          </a>
+        </li>
+      </ul>
     </div>
   </div>
 </template>

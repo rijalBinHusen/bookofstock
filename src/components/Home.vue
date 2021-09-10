@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full pl-4 bg-green-200">
+  <div class="w-full pl-4">
     <component :is="comp"></component>
   </div>
 </template>
