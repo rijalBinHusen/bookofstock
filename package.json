@@ -12,6 +12,7 @@
     "@fortawesome/vue-fontawesome": "^3.0.0-4",
     "localbase": "^0.7.5",
     "vue": "^3.2.6",
+    "vue3-datepicker": "^0.2.5",
     "vuex": "^4.0.0-0"
   },
   "devDependencies": {

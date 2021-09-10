@@ -2,8 +2,7 @@
   <div id="incoming_main" class="mx-auto">
     <div id="incoming_form" class="mt-4 flex gap-2 text-2xl">
       Tanggal :
-      <input
-        type="date"
+      <datepicker
         class="
           py-1
           text-black-700
@@ -14,7 +13,8 @@
           w-60
           mr-2
         "
-      />
+        v-model="datepicked"
+      ></datepicker>
       Shift :
       <select
         class="
@@ -40,6 +40,7 @@
           rounded
           focus:outline-none focus:bg-white
           w-20
+          cursor-pointer
         "
         value="Cari"
       />
@@ -74,5 +75,10 @@
 <script>
 export default {
   name: "incoming",
+  data() {
+    return {
+      datepicked: "",
+    };
+  },
 };
 </script>

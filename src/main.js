@@ -18,6 +18,7 @@ import {
   faCopyright,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import Datepicker from "vue3-datepicker";
 
 library.add(
   faPlus,
@@ -36,5 +37,6 @@ library.add(
 
 createApp(App)
   .component("font-awesome-icon", FontAwesomeIcon)
+  .component("datepicker", Datepicker)
   .use(store)
   .mount("#app");
