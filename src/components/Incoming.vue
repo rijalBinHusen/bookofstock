@@ -2,10 +2,10 @@
   <div id="incoming_main" class="mx-auto">
     <div id="incoming_form" class="mt-4 flex gap-2 text-2xl">
       Tanggal :
-      <datepicker class="btn btn-primary" v-model="selected"></datepicker>
+      <datepicker class="input input-primary" v-model="selected"></datepicker>
       Shift :
       <select
-        class="select-md select select-info select-bordered w-20"
+        class="select-md select select-primary select-bordered w-20"
         id="inventory_form_shift"
       >
         <option>1</option>
@@ -18,7 +18,11 @@
     <div id="incoming_form_add" class="container text-center my-4">
       <span class="text-3xl font-bold"> Incoming product </span>
 
-      <a class="btn btn-primary" href="#my-modal">
+      <a
+        class="btn btn-outline btn-accent"
+        @click="changeForm('IncomingForm')"
+        href="#my-modal"
+      >
         <font-awesome-icon
           icon="plus-square"
           style="font-size: 30px; color: black"
@@ -37,6 +41,11 @@ export default {
     return {
       selected: new Date(),
     };
+  },
+  methods: {
+    changeForm(form) {
+      this.$store.dispatch("changeForm", form);
+    },
   },
 };
 </script>
