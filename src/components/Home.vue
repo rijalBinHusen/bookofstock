@@ -6,6 +6,7 @@
 <script>
 import Incoming from "./Incoming.vue";
 import Setting from "./Setting.vue";
+import Vehicles from "./Vehicles.vue";
 export default {
   name: "Home",
   props: {
@@ -15,6 +16,7 @@ export default {
   components: {
     Incoming,
     Setting,
+    Vehicles,
   },
 };
 </script>

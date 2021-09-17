@@ -18,9 +18,9 @@ export default {
   data() {
     return {
       navbar: [
+        { name: "Vehicles", title: "Vehicles", icon: "truck-moving" },
         { name: "MasterItems", title: "Master Items", icon: "layer-group" },
         { name: "Incoming", title: "Icoming", icon: "dice-d6" },
-        { name: "Vehicles", title: "Vehicles", icon: "truck-moving" },
         { name: "Output", title: "Output", icon: "shopping-cart" },
         { name: "Importer", title: "Importer", icon: "file-upload" },
         { name: "Exporter", title: "Exporter", icon: "file-download" },
