@@ -1,4 +1,5 @@
 import { createStore } from "vuex";
+import Vehicles from "./Module/Vehicles";
 
 export default createStore({
   state: {
@@ -19,5 +20,7 @@ export default createStore({
       return state.form;
     },
   },
-  modules: {},
+  modules: {
+    Vehicles,
+  },
 });
