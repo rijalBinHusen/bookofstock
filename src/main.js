@@ -20,7 +20,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import Datepicker from "vue3-datepicker";
-import Localbase from "./Localbase";
 
 library.add(
   faPlus,
@@ -38,10 +37,8 @@ library.add(
   faCog
 );
 
-const app = createApp(App)
+createApp(App)
   .component("font-awesome-icon", FontAwesomeIcon)
   .component("datepicker", Datepicker)
-  .use(store);
-
-app.config.globalProperties.mydb = Localbase;
-app.mount("#app");
+  .use(store)
+  .mount("#app");

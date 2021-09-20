@@ -27,7 +27,7 @@
           <label class="label">
             <span class="label-text">Waktu</span>
           </label>
-          <TimePicker @time="waktu = $event" />
+          <TimePicker @time="gantiWaktu($event)" />
         </div>
         <!-- End of Waktu  -->
 
@@ -94,7 +94,7 @@ export default {
   data() {
     return {
       antrian: 1,
-      waktu: {},
+      waktu: new Date(),
       platNo: "",
       noDoc: "",
       notes: "",
@@ -102,14 +102,21 @@ export default {
   },
   methods: {
     send() {
-      console.log({
+      // Send to vuex
+      this.$store.dispatch("Vehicles/append", {
         antrian: this.antrian,
-        waktu: this.waktu,
+        waktu: this.waktu.getTime(),
         platNo: this.platNo,
         noDoc: this.noDoc,
         notes: this.notes,
-      })
-    }
-  }
+      });
+      window.history.back();
+    },
+    gantiWaktu(ev) {
+      let splitter = ev.split(":");
+      this.waktu.setHours(splitter[0]);
+      this.waktu.setMinutes(splitter[0]);
+    },
+  },
 };
 </script>

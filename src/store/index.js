@@ -1,9 +1,12 @@
+/* eslint-disable no-unused-vars */
 import { createStore } from "vuex";
 import Vehicles from "./Module/Vehicles";
+import Localbase from "../Localbase";
 
 export default createStore({
   state: {
     form: "",
+    gudang: "",
   },
   mutations: {
     changeForm(state, val) {
@@ -22,5 +25,6 @@ export default createStore({
   },
   modules: {
     Vehicles,
+    Localbase,
   },
 });

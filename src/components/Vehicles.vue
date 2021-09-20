@@ -20,22 +20,42 @@
       </a>
     </div>
 
-    <div id="vehicles_table">vehicles table</div>
+    <div id="vehicles_table">
+      <Datatable
+        :heads="heads"
+        :datanya="vehicles"
+        :option="['edit', 'delete']"
+        :keydata="'id'"
+        :id="'table_vehicle'"
+      />
+      <!-- 
+        @edit="edit($event)"
+        @delete="del($event)"
+
+       -->
+    </div>
   </div>
 </template>
 
 <script>
+import Datatable from "./Datatable.vue";
+
 export default {
   name: "Vehicles",
   data() {
     return {
       selected: new Date(),
+      vehicles: this.$store.getters["Vehicles/vehicles"],
+      heads: ["antrian", "waktu", "platNo", "noDoc", "notes"],
     };
   },
   methods: {
     changeForm(form) {
       this.$store.dispatch("changeForm", form);
     },
+  },
+  components: {
+    Datatable,
   },
 };
 </script>
