@@ -72,7 +72,7 @@
           <td :key="r[key]" v-for="key in heads">{{ r[key] }}</td>
 
           <td v-if="option.length > 0">
-            <a
+            <!-- <a
               @click="
                 $emit('edit', r[keydata]);
                 deData.nowSort = null;
@@ -97,7 +97,8 @@
               class="btn btn-xs"
             >
               Detail
-            </button>
+            </button> -->
+            <slot></slot>
           </td>
         </tr>
       </tbody>

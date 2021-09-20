@@ -19,12 +19,14 @@
 <script>
 import IncomingForm from "./IncomingForm.vue";
 import VehiclesForm from "./VehiclesForm.vue";
+import ListGudang from "./ListGudang.vue";
 
 export default {
   name: "Modal",
   components: {
     IncomingForm,
     VehiclesForm,
+    ListGudang,
   },
   computed: {
     form() {

@@ -39,10 +39,16 @@ export default {
       this.nav = name;
     },
   },
-  computed: {
-    color() {
-      return this.$store.getters["color"];
-    },
+  mounted() {
+    // get vehicles data
+    this.$store.dispatch("Vehicles/getStart");
+    // check is the user selected the warehouse;
+    if (!this.$store.getters["gudang"]) {
+      // select one of warehouse
+      this.$store.dispatch("changeForm", "ListGudang");
+      // open modal
+      window.location.href = "#my-modal";
+    }
   },
 };
 </script>

@@ -18,7 +18,7 @@ const Vehicles = {
         document: value.id,
       });
     },
-    // get data when start
+    //  replace old data with new
     fresh(state, value) {
       state.vehicles = value;
     },

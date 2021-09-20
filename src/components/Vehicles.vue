@@ -21,13 +21,17 @@
     </div>
 
     <div id="vehicles_table">
-      <Datatable
+      <data-table
         :heads="heads"
         :datanya="vehicles"
         :option="['edit', 'delete']"
         :keydata="'id'"
         :id="'table_vehicle'"
-      />
+      >
+      <button>SO</button>
+      <button>SO</button>
+      <button>SO</button>
+      </data-table>
       <!-- 
         @edit="edit($event)"
         @delete="del($event)"
@@ -55,7 +59,15 @@ export default {
     },
   },
   components: {
-    Datatable,
+    "data-table": Datatable,
+  },
+  mounted() {
+    if (!this.$store.getters["gudang"]) {
+      // select one of warehouse
+      this.$store.dispatch("changeForm", "ListGudang");
+      // open modal
+      window.location.href = "#my-modal";
+    }
   },
 };
 </script>
