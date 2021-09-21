@@ -7,7 +7,17 @@
     <h3 class="text-4xl font-bold">Add vehicle</h3>
 
     <div id="vehicle_add_form" class="w-96 grid grid-cols-1 p-6">
-      <form @submit.prevent="send">
+      <form ref="vehicle_form" @submit.prevent="send">
+        <!-- Tanggal -->
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">Tanggal</span>
+          </label>
+          <datepicker
+            class="input btn-sm text-xl text-center w-full input-info"
+            v-model="selected"
+          ></datepicker>
+        </div>
         <!-- Nomor antrian -->
         <div class="form-control">
           <label class="label">
@@ -18,7 +28,7 @@
             placeholder="Antrian"
             :value="antrian"
             @change="antrian = $event.target.value"
-            class="input input-info input-bordered text-center text-xl"
+            class="input btn-sm input-info input-bordered text-center text-xl"
           />
         </div>
         <!-- End of Nomor antrian -->
@@ -27,7 +37,7 @@
           <label class="label">
             <span class="label-text">Waktu</span>
           </label>
-          <TimePicker @time="gantiWaktu($event)" />
+          <TimePicker class="btn-sm" @time="gantiWaktu($event)" />
         </div>
         <!-- End of Waktu  -->
 
@@ -41,7 +51,7 @@
             placeholder="Plat nomor"
             :value="platNo"
             @change="platNo = $event.target.value"
-            class="input input-info input-bordered text-center text-xl"
+            class="input btn-sm input-info input-bordered text-center text-xl"
           />
         </div>
         <!-- End of Plat nomor -->
@@ -56,7 +66,7 @@
             :value="noDoc"
             @change="noDoc = $event.target.value"
             placeholder="No dokumen"
-            class="input input-info input-bordered text-center text-xl"
+            class="input btn-sm input-info input-bordered text-center text-xl"
           />
         </div>
         <!-- End of Nomor dokument -->
@@ -71,7 +81,7 @@
             :value="notes"
             @change="notes = $event.target.value"
             placeholder="Catatan"
-            class="input input-info input-bordered text-center text-xl"
+            class="input btn-sm input-info input-bordered text-center text-xl"
           />
         </div>
         <!-- End of Catatan -->
@@ -86,6 +96,7 @@
 
 <script>
 import TimePicker from "./TimePicker.vue";
+
 export default {
   name: "VehiclesForm.vue",
   components: {
@@ -93,8 +104,9 @@ export default {
   },
   data() {
     return {
+      gudang: this.$store.getters["gudang"],
+      selected: new Date(),
       antrian: 1,
-      waktu: new Date(),
       platNo: "",
       noDoc: "",
       notes: "",
@@ -103,19 +115,23 @@ export default {
   methods: {
     send() {
       // Send to vuex
-      this.$store.dispatch("Vehicles/append", {
-        antrian: this.antrian,
-        waktu: this.waktu.getTime(),
-        platNo: this.platNo,
-        noDoc: this.noDoc,
-        notes: this.notes,
-      });
-      window.history.back();
+      if (this.gudang) {
+        this.$store.dispatch("Vehicles/append", {
+          gudang: this.gudang,
+          antrian: this.antrian,
+          waktu: this.selected.getTime(),
+          platNo: this.platNo,
+          noDoc: this.noDoc,
+          notes: this.notes,
+        });
+        this.$store.dispatch("changeForm", "");
+        window.location.href = "#";
+      }
     },
     gantiWaktu(ev) {
       let splitter = ev.split(":");
-      this.waktu.setHours(splitter[0]);
-      this.waktu.setMinutes(splitter[0]);
+      this.selected.setHours(splitter[0]);
+      this.selected.setMinutes(splitter[0]);
     },
   },
 };

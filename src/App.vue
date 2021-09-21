@@ -43,12 +43,7 @@ export default {
     // get vehicles data
     this.$store.dispatch("Vehicles/getStart");
     // check is the user selected the warehouse;
-    if (!this.$store.getters["gudang"]) {
-      // select one of warehouse
-      this.$store.dispatch("changeForm", "ListGudang");
-      // open modal
-      window.location.href = "#my-modal";
-    }
+    this.$store.getters["gudang"];
   },
 };
 </script>

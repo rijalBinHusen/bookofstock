@@ -1,5 +1,5 @@
 <template>
-  <div class="input input-info input-bordered py-2">
+  <div class="input input-info input-bordered">
     <select
       @change="clock = $event.target.value"
       class="bg-transparent text-xl appearance-none outline-none"

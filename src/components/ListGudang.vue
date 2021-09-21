@@ -28,8 +28,10 @@ export default {
   },
   methods: {
     send() {
-      window.location.href = "#";
-      this.$store.dispatch("gudang", this.gudang);
+      if (this.gudang) {
+        window.location.href = "#";
+        this.$store.dispatch("gudang", this.gudang);
+      }
     },
   },
 };

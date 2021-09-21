@@ -1,8 +1,12 @@
 <template>
   <div id="vehicles_main" class="mx-auto">
-    <div id="vehicles_form" class="mt-4 flex gap-2 text-2xl">
+    <div id="vehicles_form" class="my-2 py-2 flex text-2xl border-b-2">
       Tanggal :
       <datepicker class="input input-primary" v-model="selected"></datepicker>
+      <div class="tabs-boxed">
+        <a class="tab tab-active">Proses</a>
+        <a class="tab">Selesai</a>
+      </div>
     </div>
 
     <div id="vehicles_form_add" class="container text-center my-4">
@@ -28,9 +32,10 @@
         :keydata="'id'"
         :id="'table_vehicle'"
       >
-      <button>SO</button>
-      <button>SO</button>
-      <button>SO</button>
+        <button class="btn btn-primary btn-xs">
+          Muat
+          <font-awesome-icon icon="arrow-alt-circle-right" />
+        </button>
       </data-table>
       <!-- 
         @edit="edit($event)"
@@ -62,12 +67,8 @@ export default {
     "data-table": Datatable,
   },
   mounted() {
-    if (!this.$store.getters["gudang"]) {
-      // select one of warehouse
-      this.$store.dispatch("changeForm", "ListGudang");
-      // open modal
-      window.location.href = "#my-modal";
-    }
+    // is user selected warehouse
+    this.$store.getters["gudang"];
   },
 };
 </script>

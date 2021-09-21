@@ -11,12 +11,6 @@ const Vehicles = {
       state.vehicles.unshift(value);
       //append to indexeddb
       Localbase.append("vehicles", value);
-      //Record to activity
-      Localbase.append("activity", {
-        time: new Date.getTime(),
-        operation: "create",
-        document: value.id,
-      });
     },
     //  replace old data with new
     fresh(state, value) {

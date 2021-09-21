@@ -11,6 +11,8 @@ export default createStore({
   mutations: {
     changeForm(state, val) {
       state.form = val;
+      // open modal
+      window.location.href = "#my-modal";
     },
     gudang(state, val) {
       state.gudang = val;
@@ -29,7 +31,12 @@ export default createStore({
       return state.form;
     },
     gudang(state) {
-      return state.gudang;
+      if (state.gudang) {
+        return state.gudang;
+      } else {
+        window.location.href = "#my-modal";
+        state.form = "ListGudang";
+      }
     },
   },
   modules: {

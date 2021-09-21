@@ -18,7 +18,8 @@ import {
   faCopyright,
   faCog,
   faPencilAlt,
-  faTrashAlt
+  faTrashAlt,
+  faArrowAltCircleRight,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import Datepicker from "vue3-datepicker";
@@ -38,7 +39,8 @@ library.add(
   faCopyright,
   faCog,
   faPencilAlt,
-  faTrashAlt
+  faTrashAlt,
+  faArrowAltCircleRight
 );
 
 createApp(App)
