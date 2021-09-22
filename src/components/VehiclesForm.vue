@@ -61,13 +61,27 @@
           <label class="label">
             <span class="label-text">No dokumen</span>
           </label>
-          <input
-            type="text"
-            :value="noDoc"
-            @change="noDoc = $event.target.value"
-            placeholder="No dokumen"
-            class="input btn-sm input-info input-bordered text-center text-xl"
-          />
+          <div class="flex space-x-1">
+            <input
+              type="text"
+              :value="noDoc"
+              @change="noDoc = $event.target.value"
+              placeholder="No dokumen"
+              class="
+                input
+                btn-sm
+                input-info input-bordered
+                text-center text-xl
+                w-full
+              "
+            />
+            <button
+              @click.prevent="tambahDok"
+              class="btn btn-sm text-xl font-bold btn-primary"
+            >
+              +
+            </button>
+          </div>
         </div>
         <!-- End of Nomor dokument -->
 
@@ -113,6 +127,7 @@ export default {
     };
   },
   methods: {
+    // Kirim ke vuex
     send() {
       // Send to vuex
       if (this.gudang) {
@@ -128,10 +143,15 @@ export default {
         window.location.href = "#";
       }
     },
+    // ganti waktu
     gantiWaktu(ev) {
       let splitter = ev.split(":");
       this.selected.setHours(splitter[0]);
       this.selected.setMinutes(splitter[1]);
+    },
+    // tambah nomor dokumen
+    tambahDok() {
+      console.log("tambah");
     },
   },
 };

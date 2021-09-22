@@ -149,8 +149,33 @@
 
 <script>
 export default {
+  props: {
+    heads: {
+      type: Array,
+      required: true,
+    },
+    datanya: {
+      type: Array,
+      required: true,
+    },
+    keydata: {
+      type: String,
+      required: true,
+    },
+    no: {
+      type: Boolean,
+      required: true,
+    },
+    option: {
+      type: Boolean,
+      required: true,
+    },
+    id: {
+      type: String,
+      required: true,
+    },
+  },
   name: "Datatable",
-  props: ["datanya", "heads", "option", "keydata", "icon", "id"],
   data() {
     return {
       deData: localStorage.getItem(this.id)
