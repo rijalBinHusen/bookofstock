@@ -21,7 +21,7 @@
     <table class="table w-full table-compact">
       <thead>
         <tr class="">
-          <th scope="col">No</th>
+          <th v-if="no" scope="col">No</th>
           <th
             v-for="head in heads"
             :key="head"
@@ -43,14 +43,14 @@
             >
             {{ tulisanBaku(head) }}
           </th>
-          <th v-if="option.length > 0" scope="col">Option</th>
+          <th v-if="option" scope="col">Option</th>
         </tr>
       </thead>
 
       <!--search form-->
       <tbody>
         <tr>
-          <td></td>
+          <td v-if="no"></td>
           <td :key="key" v-for="key in heads">
             <input
               type="text"
@@ -68,36 +68,10 @@
         <!--end ofsearch form-->
 
         <tr class="hover" :key="r" v-for="(r, index) in showRow">
-          <th>{{ index + deData.startRow + 1 }}</th>
+          <th v-if="no">{{ index + deData.startRow + 1 }}</th>
           <td :key="r[key]" v-for="key in heads">{{ r[key] }}</td>
 
-          <td v-if="option.length > 0">
-            <!-- <a
-              @click="
-                $emit('edit', r[keydata]);
-                deData.nowSort = null;
-              "
-              v-if="option.includes('edit')"
-              class="btn btn-xs btn-primary mr-1"
-            >
-              Edit <font-awesome-icon icon="pencil-alt" />
-            </a>
-
-            <a
-              @click="$emit('delete', r[keydata])"
-              v-if="option.includes('delete')"
-              class="btn btn-xs btn-secondary"
-            >
-              Delete <font-awesome-icon icon="trash-alt" />
-            </a>
-
-            <button
-              @click="$emit('detail', r[keydata])"
-              v-if="option.includes('detail')"
-              class="btn btn-xs"
-            >
-              Detail
-            </button> -->
+          <td v-if="option">
             <slot></slot>
           </td>
         </tr>

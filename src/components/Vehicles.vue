@@ -28,8 +28,9 @@
       <data-table
         :heads="heads"
         :datanya="vehicles"
-        :option="['edit', 'delete']"
         :keydata="'id'"
+        :no="false"
+        :option="true"
         :id="'table_vehicle'"
       >
         <button class="btn btn-primary btn-xs">

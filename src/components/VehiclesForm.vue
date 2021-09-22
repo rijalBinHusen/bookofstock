@@ -5,42 +5,42 @@
   >
     <!-- Judul -->
     <h3 class="text-4xl font-bold">Add vehicle</h3>
-
     <div id="vehicle_add_form" class="w-96 grid grid-cols-1 p-6">
       <form ref="vehicle_form" @submit.prevent="send">
-        <!-- Tanggal -->
-        <div class="form-control">
-          <label class="label">
-            <span class="label-text">Tanggal</span>
-          </label>
-          <datepicker
-            class="input btn-sm text-xl text-center w-full input-info"
-            v-model="selected"
-          ></datepicker>
+        <div class="grid grid-cols-1 grid-cols-3 justify-items-center">
+          <!-- Tanggal -->
+          <div class="form-control">
+            <label class="label">
+              <span class="label-text">Tanggal</span>
+            </label>
+            <datepicker
+              class="input btn-sm text-center w-full input-info"
+              v-model="selected"
+            ></datepicker>
+          </div>
+          <!-- Nomor antrian -->
+          <div class="form-control mx-2">
+            <label class="label">
+              <span class="label-text">Antrian</span>
+            </label>
+            <input
+              type="text"
+              placeholder="Antrian"
+              :value="antrian"
+              @change="antrian = $event.target.value"
+              class="input btn-sm input-info input-bordered text-center w-20"
+            />
+          </div>
+          <!-- End of Nomor antrian -->
+          <!-- Waktu  -->
+          <div class="form-control">
+            <label class="label">
+              <span class="label-text">Waktu</span>
+            </label>
+            <TimePicker class="btn-sm" @time="gantiWaktu($event)" />
+          </div>
+          <!-- End of Waktu  -->
         </div>
-        <!-- Nomor antrian -->
-        <div class="form-control">
-          <label class="label">
-            <span class="label-text">Antrian</span>
-          </label>
-          <input
-            type="text"
-            placeholder="Antrian"
-            :value="antrian"
-            @change="antrian = $event.target.value"
-            class="input btn-sm input-info input-bordered text-center text-xl"
-          />
-        </div>
-        <!-- End of Nomor antrian -->
-        <!-- Waktu  -->
-        <div class="form-control">
-          <label class="label">
-            <span class="label-text">Waktu</span>
-          </label>
-          <TimePicker class="btn-sm" @time="gantiWaktu($event)" />
-        </div>
-        <!-- End of Waktu  -->
-
         <!-- Plat nomor -->
         <div class="form-control">
           <label class="label">
@@ -119,7 +119,7 @@ export default {
         this.$store.dispatch("Vehicles/append", {
           gudang: this.gudang,
           antrian: this.antrian,
-          waktu: this.selected.getTime(),
+          waktu: this.selected.toLocaleString(),
           platNo: this.platNo,
           noDoc: this.noDoc,
           notes: this.notes,
@@ -131,7 +131,7 @@ export default {
     gantiWaktu(ev) {
       let splitter = ev.split(":");
       this.selected.setHours(splitter[0]);
-      this.selected.setMinutes(splitter[0]);
+      this.selected.setMinutes(splitter[1]);
     },
   },
 };
