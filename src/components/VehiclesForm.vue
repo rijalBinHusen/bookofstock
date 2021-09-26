@@ -61,6 +61,9 @@
           <label class="label">
             <span class="label-text">No dokumen</span>
           </label>
+          <!-- <div v-if="noDoc.length > 1">
+            <span v-for="doc in noDoc" :key="doc">{{ doc }} / </span>
+          </div> -->
           <div class="flex space-x-1">
             <input
               type="text"
@@ -73,11 +76,12 @@
                 input-info input-bordered
                 text-center text-xl
                 w-full
+                my-1
               "
             />
             <button
-              @click.prevent="tambahDok"
-              class="btn btn-sm text-xl font-bold btn-primary"
+              @click.prevent="tambahDok('')"
+              class="btn btn-sm my-1 text-xl font-bold btn-success"
             >
               +
             </button>
@@ -134,7 +138,7 @@ export default {
         this.$store.dispatch("Vehicles/append", {
           gudang: this.gudang,
           antrian: this.antrian,
-          waktu: this.selected.toLocaleString(),
+          waktu: this.selected.getTime(),
           platNo: this.platNo,
           noDoc: this.noDoc,
           notes: this.notes,
@@ -150,8 +154,11 @@ export default {
       this.selected.setMinutes(splitter[1]);
     },
     // tambah nomor dokumen
-    tambahDok() {
-      console.log("tambah");
+    tambahDok(ev) {
+      this.noDoc = this.noDoc.filter((val) => {
+        return val !== "";
+      });
+      this.noDoc.push(ev);
     },
   },
 };

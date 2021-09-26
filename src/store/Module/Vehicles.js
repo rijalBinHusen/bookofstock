@@ -11,6 +11,7 @@ const Vehicles = {
       state.vehicles.unshift(value);
       //append to indexeddb
       Localbase.append("vehicles", value);
+      // console.log(value);
     },
     //  replace old data with new
     fresh(state, value) {
@@ -51,7 +52,7 @@ const Vehicles = {
   },
   getters: {
     vehicles(state) {
-      return state.vehicles;
+      return JSON.stringify(state.vehicles);
     },
   },
 };
