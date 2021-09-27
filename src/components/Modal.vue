@@ -17,6 +17,7 @@
 import IncomingForm from "./IncomingForm.vue";
 import VehiclesForm from "./VehiclesForm.vue";
 import ListGudang from "./ListGudang.vue";
+import importSorder from "./ImportSorder.vue";
 
 export default {
   name: "Modal",
@@ -24,6 +25,7 @@ export default {
     IncomingForm,
     VehiclesForm,
     ListGudang,
+    importSorder,
   },
   computed: {
     form() {

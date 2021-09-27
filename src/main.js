@@ -40,7 +40,7 @@ library.add(
   faCog,
   faPencilAlt,
   faTrashAlt,
-  faArrowAltCircleRight
+  faArrowAltCircleRight,
 );
 
 createApp(App)
