@@ -10,17 +10,10 @@
     </div>
 
     <div id="vehicles_form_add" class="container text-center my-4">
-      <span class="text-3xl font-bold"> Vehicles </span>
+      <span class="text-3xl font-bold">Vehicles</span>
 
-      <a
-        class="btn btn-outline btn-accent"
-        @click="changeForm('vehiclesForm')"
-        href="#my-modal"
-      >
-        <font-awesome-icon
-          icon="plus-square"
-          style="font-size: 30px; color: black"
-        />
+      <a class="btn btn-outline btn-accent" @click="changeForm('vehiclesForm')" href="#my-modal">
+        <font-awesome-icon icon="plus-square" style="font-size: 30px; color: black" />
       </a>
     </div>
 
@@ -42,7 +35,7 @@
         @edit="edit($event)"
         @delete="del($event)"
 
-       -->
+      -->
     </div>
   </div>
 </template>
@@ -59,9 +52,13 @@ export default {
     };
   },
   methods: {
+    // Tambah data
     changeForm(form) {
       this.$store.dispatch("changeForm", form);
     },
+    // Edit data
+    // Hapus data
+    // Lihat data
   },
   components: {
     "data-table": Datatable,
@@ -81,7 +78,7 @@ export default {
           antrian: val.antrian,
           waktu: this.$store.getters["dateFormat"](["waktu", val.waktu]),
           platNo: val.platNo,
-          noDoc: val.noDoc,
+          noDoc: val.noDoc.split("/")[0],
           notes: val.notes,
         });
       });

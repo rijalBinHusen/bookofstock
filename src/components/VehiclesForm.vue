@@ -1,8 +1,5 @@
 <template>
-  <div
-    id="vehicle_add"
-    class="w-full grid justify-items-center text-center bg-base-200 rounded-lg"
-  >
+  <div id="vehicle_add" class="w-full grid justify-items-center text-center bg-base-200 rounded-lg">
     <!-- Judul -->
     <h3 class="text-4xl font-bold">Add vehicle</h3>
     <div id="vehicle_add_form" class="w-96 grid grid-cols-1 p-6">
@@ -13,10 +10,7 @@
             <label class="label">
               <span class="label-text">Tanggal</span>
             </label>
-            <datepicker
-              class="input btn-sm text-center w-full input-info"
-              v-model="selected"
-            ></datepicker>
+            <datepicker class="input btn-sm text-center w-full input-info" v-model="selected"></datepicker>
           </div>
           <!-- Nomor antrian -->
           <div class="form-control mx-2">
@@ -61,33 +55,27 @@
           <label class="label">
             <span class="label-text">No dokumen</span>
           </label>
-          <!-- <div v-if="noDoc.length > 1">
-            <span v-for="doc in noDoc" :key="doc">{{ doc }} / </span>
-          </div> -->
           <div class="flex space-x-1">
             <input
               type="text"
-              :value="noDoc"
-              @change="noDoc = $event.target.value"
+              ref="noSo"
               placeholder="No dokumen"
-              class="
-                input
-                btn-sm
-                input-info input-bordered
-                text-center text-xl
-                w-full
-                my-1
-              "
+              list="sorder"
+              class="input btn-sm input-info input-bordered text-center text-xl w-full my-1"
             />
+            <datalist id="sorder">
+              <option v-for="so in sorder" :key="so.noSo">{{ so.noSo + " - " + so.cust }}</option>
+            </datalist>
             <button
               @click.prevent="tambahDok('')"
               class="btn btn-sm my-1 text-xl font-bold btn-success"
-            >
-              +
-            </button>
+            >+</button>
+          </div>
+          <div v-if="noDoc.length > 0">
+            <span v-for="doc in noDoc" :key="doc">{{ doc }}</span>
           </div>
         </div>
-        <!-- End of Nomor dokument -->
+        <!-- End of Nomor dokumen -->
 
         <!-- Catatan -->
         <div class="form-control">
@@ -154,11 +142,18 @@ export default {
       this.selected.setMinutes(splitter[1]);
     },
     // tambah nomor dokumen
-    tambahDok(ev) {
-      this.noDoc = this.noDoc.filter((val) => {
-        return val !== "";
-      });
-      this.noDoc.push(ev);
+    tambahDok() {
+      // this.noDoc.push();
+      if (!this.noDoc) {
+        this.noDoc = this.$refs.noSo.value.split("-")[0];
+      } else {
+        this.noDoc += "/" + this.$refs.noSo.value.split("-")[0]
+      }
+    },
+  },
+  computed: {
+    sorder() {
+      return this.$store.getters["Sorder/sorder"];
     },
   },
 };

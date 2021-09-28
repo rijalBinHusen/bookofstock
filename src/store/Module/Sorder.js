@@ -12,12 +12,17 @@ const Sorder = {
     getStart({ commit }) {
       Localbase.getData({
         store: "sorder",
+        orderBy: "noSo",
       }).then((result) => {
         commit("fresh", result);
       });
     },
   },
-  getters: {},
+  getters: {
+    sorder(state) {
+      return state.sOrder;
+    },
+  },
 };
 
 export default Sorder;

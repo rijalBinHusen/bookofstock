@@ -44,18 +44,19 @@ export default {
           dat.push({
             item: val2[13].replace(/"/gi, ""),
             qty: Number(val2[3]),
+            cust: val2[12].replace(/"/gi, ""),
             tglSo: val2[1],
             noSo: val2[2].replace(/"/gi, ""),
           });
         }
       });
-      // console.log(dat)
-      // Send to writeSorder
+      // Send to write
       this.$store
         .dispatch("Impor/write", { store: "sorder", val: dat })
-        .then(() => alert("selesai"));
-      // console.log(this.$store.dispatch("Import/"))
-      // console.log(dat)
+        .then(() => {
+          alert("Selesai");
+          window.location.href = "#";
+        });
     },
   },
 };
