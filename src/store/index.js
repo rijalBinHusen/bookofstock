@@ -1,6 +1,8 @@
 /* eslint-disable no-unused-vars */
 import { createStore } from "vuex";
 import Vehicles from "./Module/Vehicles";
+import Impor from "./Module/Import";
+import Sorder from "./Module/Sorder";
 import Localbase from "../Localbase";
 
 export default createStore({
@@ -85,5 +87,7 @@ export default createStore({
   modules: {
     Vehicles,
     Localbase,
+    Impor,
+    Sorder,
   },
 });

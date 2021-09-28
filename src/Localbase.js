@@ -19,8 +19,8 @@ export default {
     db.collection(store).doc(id).update(val);
   },
   reWrite: function (store, val) {
-    //(nameStore, {id: idData}, {key: 'new value'})
-    //replace old data with the new one
+    //(nameStore, [{id: idData}, {key: 'new value'}])
+    //write data
     db.collection(store).set(val);
   },
   getData: function (deData) {

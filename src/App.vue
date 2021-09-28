@@ -42,6 +42,7 @@ export default {
   mounted() {
     // get vehicles data
     this.$store.dispatch("Vehicles/getStart");
+    this.$store.dispatch("Sorder/getStart");
     // check is the user selected the warehouse;
     this.$store.getters["gudang"];
   },

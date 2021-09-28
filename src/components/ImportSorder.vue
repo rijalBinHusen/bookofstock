@@ -1,13 +1,7 @@
 <template>
   <div class="text-center">
     <p class="text-3xl">Import sales order</p>
-    <input
-      class="hidden"
-      @change="impor($event)"
-      type="file"
-      accept=".ttx"
-      ref="importerField"
-    />
+    <input class="hidden" @change="impor($event)" type="file" accept=".ttx" ref="importerField" />
     <font-awesome-icon
       @click="importField"
       style="font-size: 80px; cursor: pointer"
@@ -17,6 +11,7 @@
 </template>
 
 <script>
+/* eslint-disable prettier/prettier */
 export default {
   name: "importSorder",
   methods: {
@@ -35,22 +30,32 @@ export default {
       reader.readAsText(ev.target.files[0]);
     },
     splitter(arr) {
+      // Utuk menampung data
       let dat = [];
+      // iteration
       arr.map((val) => {
-        dat.push(val.split("\t"));
+        // pisahkan tabnya
+        let val2 = val.split("\t");
+        // Jika val2 index ke 1 tanggalnya lebih dari 1 September
+        if (
+          new Date(val2[1]).getTime() > new Date("9/1/2021").getTime() &&
+          Boolean(Number(val2[3]))
+        ) {
+          dat.push({
+            item: val2[13].replace(/"/gi, ""),
+            qty: Number(val2[3]),
+            tglSo: val2[1],
+            noSo: val2[2].replace(/"/gi, ""),
+          });
+        }
       });
-      let res = [];
-      dat.map((val) => {
-        val.length > 5 && val[1] > "1-Sept-2021"
-          ? res.push({
-              tglSo: val[1],
-              noSo: val[2].replace(/"/gi, ""),
-              item: val[13].replace(/"/gi, ""),
-              qty: Number(val[3]),
-            })
-          : false;
-      });
-      console.log(res);
+      // console.log(dat)
+      // Send to writeSorder
+      this.$store
+        .dispatch("Impor/write", { store: "sorder", val: dat })
+        .then(() => alert("selesai"));
+      // console.log(this.$store.dispatch("Import/"))
+      // console.log(dat)
     },
   },
 };
