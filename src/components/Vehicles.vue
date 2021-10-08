@@ -12,7 +12,12 @@
     <div id="vehicles_form_add" class="container text-center my-4">
       <span class="text-3xl font-bold">Vehicles</span>
 
-      <a class="btn btn-outline btn-accent" @click="changeForm('vehiclesForm')" href="#my-modal">
+      <a
+        v-if="selected.getDate() == new Date().getDate()"
+        class="btn btn-outline btn-accent"
+        @click="changeForm('vehiclesForm')"
+        href="#my-modal"
+      >
         <font-awesome-icon icon="plus-square" style="font-size: 30px; color: black" />
       </a>
     </div>
@@ -25,17 +30,41 @@
         :no="false"
         :option="true"
         :id="'table_vehicle'"
+        v-slot:default="slotProps"
       >
-        <button class="btn btn-primary btn-xs">
-          Muat
-          <font-awesome-icon icon="arrow-alt-circle-right" />
-        </button>
+        <div class="dropdown mr-5 px-5">
+          <div tabindex="0" class="m-1 btn btn-xs btn-primary">
+            Opsi
+            <font-awesome-icon class="ml-1" icon="ellipsis-h" />
+          </div>
+          <ul tabindex="0" class="p-2 shadow menu dropdown-content bg-base-100 rounded-box w-30">
+            <li>
+              <a>
+                Muat
+                <font-awesome-icon class="ml-1" icon="arrow-alt-circle-right" />
+              </a>
+            </li>
+            <li @click="lihat(slotProps.id)">
+              <a>
+                Lihat
+                <font-awesome-icon class="ml-1" icon="info-circle" />
+              </a>
+            </li>
+            <li>
+              <a>
+                Edit
+                <font-awesome-icon class="ml-1" icon="pencil-alt" />
+              </a>
+            </li>
+            <li>
+              <a>
+                Hapus
+                <font-awesome-icon class="ml-1" icon="trash-alt" />
+              </a>
+            </li>
+          </ul>
+        </div>
       </data-table>
-      <!-- 
-        @edit="edit($event)"
-        @delete="del($event)"
-
-      -->
     </div>
   </div>
 </template>
@@ -56,9 +85,13 @@ export default {
     changeForm(form) {
       this.$store.dispatch("changeForm", form);
     },
+    // Lihat data
+    lihat(ev) {
+      this.$store.dispatch("changeForm", "VehiclesDetails");
+      this.$store.dispatch("Vehicles/check", ev);
+    },
     // Edit data
     // Hapus data
-    // Lihat data
   },
   components: {
     "data-table": Datatable,
@@ -78,7 +111,10 @@ export default {
           antrian: val.antrian,
           waktu: this.$store.getters["dateFormat"](["waktu", val.waktu]),
           platNo: val.platNo,
-          noDoc: val.noDoc.split("/")[0],
+          noDoc: val.noDoc
+            .split("/")
+            .map((val) => val.slice(-5))
+            .join("/"),
           notes: val.notes,
         });
       });

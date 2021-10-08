@@ -149,6 +149,7 @@ export default {
       } else {
         this.noDoc += "/" + this.$refs.noSo.value.split("-")[0]
       }
+      this.$refs.noSo.value = ""
     },
   },
   computed: {
@@ -156,5 +157,8 @@ export default {
       return this.$store.getters["Sorder/sorder"];
     },
   },
+  mounted() {
+    this.antrian = this.$store.getters["Vehicles/antrian"]
+  }
 };
 </script>

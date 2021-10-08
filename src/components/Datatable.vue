@@ -2,7 +2,7 @@
   <div>
     <!-- pagination length & form -->
     <div class="mb-2">
-      <nav class="">
+      <nav class>
         <h3>Show entries</h3>
         <select class="select-primary" @change="changeRow($event.target.value)">
           <option :selected="deData.lengthRow == 5" value="5">5</option>
@@ -20,27 +20,25 @@
 
     <table class="table w-full table-compact">
       <thead>
-        <tr class="">
+        <tr class>
           <th v-if="no" scope="col">No</th>
           <th
             v-for="head in heads"
             :key="head"
             @click="
-              sortDedata(head, deData.sortAsc);
-              deData.sortAsc = !deData.sortAsc;
+            sortDedata(head, deData.sortAsc);
+            deData.sortAsc = !deData.sortAsc;
             "
             scope="col"
           >
             <span
               style="font-size: 20px; font-weight: bolder"
               v-if="!deData.sortAsc && deData.nowSort == head"
-              >&darr;</span
-            >
+            >&darr;</span>
             <span
               style="font-size: 20px; font-weight: bolder"
               v-if="deData.sortAsc && deData.nowSort == head"
-              >&uarr;</span
-            >
+            >&uarr;</span>
             {{ tulisanBaku(head) }}
           </th>
           <th v-if="option" scope="col">Option</th>
@@ -72,7 +70,7 @@
           <td :key="r[key]" v-for="key in heads">{{ r[key] }}</td>
 
           <td v-if="option">
-            <slot></slot>
+            <slot :id="r[keydata]"></slot>
           </td>
         </tr>
       </tbody>
@@ -101,45 +99,36 @@
           href="#"
           @click="toThePage(deData.currentPage - 1)"
           :class="[
-            'w3-bar-item',
-            'w3-button',
-            deData.currentPage == 0 || deData.currentPage == 1 ? 'w3-hide' : '',
+            'btn btn-primary',
+            deData.currentPage == 0 || deData.currentPage == 1 ? 'hidden' : '',
           ]"
-        >
-          &laquo;
-        </a>
+        >&laquo;</a>
 
         <a
           href="#"
           :class="[
-            'w3-bar-item',
-            'w3-button',
+            'btn btn-primary',
             deData.currentPage == p || (p == 1 && deData.currentPage == 0)
-              ? 'w3-teal'
+              ? 'active'
               : '',
           ]"
           v-for="p in totalPage"
           :key="p"
           @click="toThePage(p)"
-        >
-          {{ p }}
-        </a>
+        >{{ p }}</a>
 
         <a
           href="#"
           :class="[
-            'w3-bar-item',
-            'w3-button',
+            'btn btn-primary',
             deData.startRow + Number(deData.lengthRow) >= deData.rowLenght
-              ? 'w3-hide'
+              ? 'hidden'
               : '',
           ]"
           @click="
-            toThePage(deData.currentPage == 0 ? 2 : deData.currentPage + 1)
+          toThePage(deData.currentPage == 0 ? 2 : deData.currentPage + 1)
           "
-        >
-          &raquo;
-        </a>
+        >&raquo;</a>
       </div>
     </div>
 
@@ -181,16 +170,16 @@ export default {
       deData: localStorage.getItem(this.id)
         ? JSON.parse(localStorage.getItem(this.id))
         : {
-            startRow: 0,
-            lengthRow: 5,
-            nowSort: null,
-            currentPage: 0,
-            searchInput: [],
-            searchKey: [],
-            rowLenght: 0,
-            allPages: 0,
-            sortAsc: true,
-          },
+          startRow: 0,
+          lengthRow: 5,
+          nowSort: null,
+          currentPage: 0,
+          searchInput: [],
+          searchKey: [],
+          rowLenght: 0,
+          allPages: 0,
+          sortAsc: true,
+        },
     };
   },
   computed: {
@@ -256,12 +245,12 @@ export default {
             ? [1, 2, 3]
             : [1, 2] //pages more than 2 or not
           : [
-              this.deData.currentPage - 1,
-              this.deData.currentPage,
-              this.deData.currentPage + 1 > this.deData.allPages
-                ? 1
-                : this.deData.currentPage + 1,
-            ];
+            this.deData.currentPage - 1,
+            this.deData.currentPage,
+            this.deData.currentPage + 1 > this.deData.allPages
+              ? 1
+              : this.deData.currentPage + 1,
+          ];
       }
     },
   },

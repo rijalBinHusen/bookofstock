@@ -4,6 +4,7 @@ const Vehicles = {
   namespaced: true,
   state: {
     vehicles: [],
+    check: "",
   },
   mutations: {
     // Append data
@@ -17,6 +18,9 @@ const Vehicles = {
     fresh(state, value) {
       state.vehicles = value;
     },
+    check(state, value) {
+      state.check = value
+    }
   },
   actions: {
     // Append data
@@ -49,11 +53,29 @@ const Vehicles = {
         commit("fresh", result);
       });
     },
+    check( {commit }, value) {
+      commit("check", value)
+    }
   },
   getters: {
     vehicles(state) {
       return JSON.stringify(state.vehicles);
     },
+    antrian(state) {
+      return state.vehicles[0].antrian + 1;
+    },
+    check(state){
+      let result = state.vehicles.filter((val) => 
+        val.id == state.check
+      )
+      if(result.length > 0) {
+        return result
+      }
+      Localbase.findData("vehicles", { id: state.check }).then((val) => {
+        result = val
+      })
+      return result;
+    }
   },
 };
 
