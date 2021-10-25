@@ -3,7 +3,13 @@
     <!-- <Sidebar @currentNav="currentNav($event)" :navbar="navbar" />
     <Home :comp="nav" />
     <Modal />-->
-    <Button value="Test" datanya="asd" @trig="cek($event)" tipe="primary" />
+    <!-- <Button value="Test" datanya="asd" @trig="cek($event)" tipe="primary" /> -->
+    <Form label="test" @send="cek($event)" placeholder="test" tipe="primary large border" />
+    <Form label="test" @send="cek($event)" placeholder="test" tipe="secondary small border" />
+    <Form label="test" @send="cek($event)" placeholder="test" tipe="accent xsmall border" />
+    <Form label="test" @send="cek($event)" placeholder="test" tipe="primary large" />
+    <Form label="test" @send="cek($event)" placeholder="test" tipe="secondary small" />
+    <Form label="test" @send="cek($event)" placeholder="test" tipe="accent xsmall" />
   </div>
 </template>
 
@@ -13,7 +19,8 @@
 // import Home from "./components/Home.vue";
 // import Sidebar from "./components/Sidebar.vue";
 // import Modal from "./components/Modal.vue";
-import Button from "./components/elements/Button.vue";
+// import Button from "./components/elements/Button.vue";
+import Form from "./components/elements/Forms/Input.vue";
 
 export default {
   name: "App",
@@ -35,7 +42,8 @@ export default {
     // Sidebar,
     // Home,
     // Modal,
-    Button,
+    // Button,
+    Form
   },
   methods: {
     // currentNav(name) {
