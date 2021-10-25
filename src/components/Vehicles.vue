@@ -87,7 +87,9 @@ export default {
     },
     // Lihat data
     lihat(ev) {
+      // OPEN THE MODAL
       this.$store.dispatch("changeForm", "VehiclesDetails");
+      // SEND ID TO THE STATE
       this.$store.dispatch("Vehicles/check", ev);
     },
     // Edit data
