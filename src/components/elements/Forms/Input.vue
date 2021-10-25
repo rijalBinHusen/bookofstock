@@ -34,14 +34,13 @@ export default {
       let className = ["input"];
 
       if (this.tipe.includes("primary")) className.push("input-primary");
-      if (this.tipe.includes("secondary")) className.push("input-primary");
+      if (this.tipe.includes("secondary")) className.push("input-secondary");
       if (this.tipe.includes("accent")) className.push("input-accent");
       if (this.tipe.includes("border")) className.push("input-bordered");
       if (this.tipe.includes("large")) className.push("input-large");
       if (this.tipe.includes("small")) className.push("input-sm");
       if (this.tipe.includes("xsmall")) className.push("input-xs");
 
-      console.log(className);
       return className.join(" ");
     },
   },

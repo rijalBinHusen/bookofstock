@@ -3,31 +3,32 @@
     <div id="incoming_form" class="mt-4 flex gap-2 text-2xl">
       Tanggal :
       <datepicker class="input input-primary" v-model="selected"></datepicker>
-      Shift :
-      <select
-        class="select-md select select-primary select-bordered w-20"
-        id="inventory_form_shift"
-      >
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-      </select>
-      <input type="submit" class="btn btn-primary" value="Tampilkan" />
+      <Button primary value="tampilkan" type="button" />
     </div>
 
     <div id="incoming_form_add" class="container text-center my-4">
       <span class="text-3xl font-bold"> Incoming product </span>
 
-      <a
-        class="btn btn-outline btn-accent"
-        @click="changeForm('IncomingForm')"
+      <Button
+        type="link"
         href="#my-modal"
+        class="btn"
+        accent
+        outline
+        @trig="changeForm('IncomingForm')"
       >
         <font-awesome-icon
           icon="plus-square"
           style="font-size: 30px; color: black"
         />
-      </a>
+      </Button>
+
+      <!-- <a
+        class="btn btn-outline btn-accent"
+        @click="changeForm('IncomingForm')"
+        href="#my-modal"
+      >
+      </a> -->
     </div>
 
     <div id="incoming_table">incoming table</div>
@@ -35,17 +36,27 @@
 </template>
 
 <script>
+// Import button
+import Button from "./elements/Button.vue";
+
 export default {
   name: "incoming",
   data() {
     return {
       selected: new Date(),
+      shift: 1,
     };
   },
   methods: {
     changeForm(form) {
       this.$store.dispatch("changeForm", form);
     },
+    changeShift(ev) {
+      this.shift = ev;
+    },
+  },
+  components: {
+    Button,
   },
 };
 </script>
