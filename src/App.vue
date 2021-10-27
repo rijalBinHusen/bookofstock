@@ -24,7 +24,7 @@ export default {
         // { name: "Output", title: "Output", icon: "shopping-cart" },
         // { name: "Importer", title: "Importer", icon: "file-upload" },
         // { name: "Exporter", title: "Exporter", icon: "file-download" },
-        // { name: "Setting", title: "Setting", icon: "cog" },
+        { name: "Setting", title: "Setting", icon: "cog" },
       ],
       nav: "MasterItems",
     };
