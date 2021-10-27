@@ -90,6 +90,6 @@ export default createStore({
     Localbase,
     Impor,
     Sorder,
-Incoming
+    Incoming,
   },
 });

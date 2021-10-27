@@ -149,11 +149,12 @@ export default {
       });
     },
     add() {
-      this.items.unshift({
-        item: this.item,
-        qty: this.qty,
-        tgl: this.tgl,
-      });
+      if (this.item && this.qty && this.tgl)
+        this.items.unshift({
+          item: this.item,
+          qty: this.qty,
+          tgl: this.tgl,
+        });
     },
   },
   components: {
