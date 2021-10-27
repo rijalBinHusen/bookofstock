@@ -15,6 +15,7 @@ export default {
   name: "Button",
   props: {
     datanya: String,
+    success: Boolean,
     primary: Boolean,
     secondary: Boolean,
     accent: Boolean,
@@ -25,6 +26,7 @@ export default {
     href: String,
     icon: String,
     outline: Boolean,
+    small: Boolean,
   },
   emits: ["trig"],
   methods: {
@@ -36,11 +38,13 @@ export default {
     className() {
       let classList = [];
       if (this.type == "button") classList.push("btn");
+      if (this.small) classList.push("btn-sm");
       if (this.primary) classList.push("btn-primary");
       if (this.secondary) classList.push("btn-secondary");
       if (this.accent) classList.push("btn-accent");
       if (this.ghost) classList.push("btn-ghost");
       if (this.outline) classList.push("btn-outline");
+      if (this.success) classList.push("btn-success");
       if (this.class) classList.push(this.class.split(" "));
 
       return classList.join(" ");

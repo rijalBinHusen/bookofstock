@@ -4,103 +4,110 @@
       id="incoming_add_form"
       class="grid rounded justify-items-center m-auto px-2 py-20 bg-base-200"
     >
-      <div id="incoming_add_mode" class="mb-2 grid justify-items-center">
-        <select
-          class="select select-bordered select-primary"
-          id="inventory_form_warehouse"
-        >
-          <option value="">No paper</option>
-          <option value="true">With paper</option>
-        </select>
+      <div id="incoming_add_mode" class="grid justify-items-center">
+        <Select tipe="primary" :options="['No paper', 'With paper']" />
       </div>
 
       <div id="incoming_add_form" class="grid justify-items-center">
-        <div id="incoming_info" class="mb-2 grid grid-cols-3 gap-4">
+        <div id="incoming_info" class="grid grid-cols-3 gap-4">
           <!-- date picker -->
-          <datepicker
-            class="input input-outline input-primary"
-            v-model="selected"
-          ></datepicker>
+          <div class="form-control">
+            <label for="date-picker" class="label">
+              <span class="label-text">Date</span>
+            </label>
+            <datepicker
+              id="date-picker"
+              class="input input-outline input-primary input-sm"
+              v-model="tanggal"
+            ></datepicker>
+          </div>
           <!-- end of date picker -->
+
           <!-- Shift -->
-          <select
-            class="select select-bordered select-primary"
-            id="incoming_add_shift"
-          >
-            <option value="">Shift</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-          </select>
+          <div class="form-control">
+            <label for="shift" class="label">
+              <span class="label-text">Shift</span>
+            </label>
+            <Select
+              @selectedd="shift == $event"
+              id="shift"
+              :options="[1, 2, 3]"
+              tipe="primary small"
+            />
+          </div>
           <!-- end of Shift -->
+
           <!-- Coming from -->
-          <input
-            type="text"
-            class="input input-outline input-primary"
-            id="coming_from"
+          <Input
+            label="Coming from"
+            small
+            @send="come = $event"
             placeholder="Coming from"
+            tipe="primary"
           />
           <!-- End of coming from -->
         </div>
 
-        <div id="incoming_paper" class="mb-2 grid grid-cols-3 gap-4">
-          <input
-            class="input input-outline input-primary"
-            type="text"
+        <div id="incoming_paper" class="grid grid-cols-3 gap-4">
+          <Input
+            label="Paper id"
+            @send="paperId = $event"
+            small
             placeholder="Paper id"
-            id="incoming_paper_id"
+            tipe="primary"
           />
-
-          <input
-            type="text"
-            class="input input-outline input-primary"
-            id="incoming_hand_by"
+          <Input
+            label="Hand by"
+            @send="handBy = $event"
+            small
             placeholder="Hand by"
+            tipe="primary"
           />
-
-          <input
-            type="text"
-            class="input input-outline input-primary"
-            id="incoming_receive_by"
+          <Input
+            label="Receive by"
+            small
+            @send="received = $event"
             placeholder="Receive by"
+            tipe="primary"
           />
         </div>
 
         <div id="incoming_items" class="grid grid-cols-3 gap-4 mb-2">
-          <input
-            class="input input-outline input-primary"
-            type="text"
-            id="incoming_item_code"
-            placeholder="Item code"
+          <Input
+            label="Item"
+            @send="item = $event"
+            small
+            placeholder="Item"
+            tipe="primary"
           />
-          <input
-            class="input input-outline input-primary"
-            type="text"
-            placeholder="Created goods"
-            id="incoming_item_created"
-          />
-          <input
-            class="input input-outline input-primary"
-            type="number"
-            id="incoming_item_quantity"
+          <Input
+            label="Quantity"
+            @send="qty = $event"
+            small
             placeholder="Quantity"
+            tipe="primary"
+          />
+          <Input
+            label="Date"
+            @send="tgl = $event"
+            small
+            placeholder="Date"
+            tipe="primary"
           />
         </div>
-        <div id="incoming_item_add" class="w-full text-right">
-          <input
-            class="btn btn-success"
-            type="submit"
-            id="incoming_item_quantity"
-            value="+ Add items"
-          />
+
+        <div id="incoming_item_add" class="w-full text-right mb-2">
+          <Button type="button" primary @trig="add" value="Add items" small />
         </div>
+
+        <Table
+          v-if="items.length > 0"
+          :contents="items"
+          style="max-height: 200px; overflow: auto"
+        />
+
         <div id="incoming_add_submit" class="w-full">
-          <input
-            class="btn btn-success"
-            type="submit"
-            id="incoming_item_quantity"
-            value="Submit"
-          />
+          <Button type="button" @trig="save" primary value="Submit" />
         </div>
       </div>
     </div>
@@ -108,12 +115,52 @@
 </template>
 
 <script>
+import Select from "./elements/Forms/Select.vue";
+import Input from "./elements/Forms/Input.vue";
+import Button from "./elements/Button.vue";
+import Table from "./elements/Table.vue";
+
 export default {
   name: "IncomingForm",
   data() {
     return {
-      selected: new Date(),
+      tanggal: new Date(),
+      shift: 1,
+      come: "",
+      paperId: "",
+      handBy: "",
+      received: "",
+      items: [],
+      item: "",
+      qty: "",
+      tgl: "",
     };
+  },
+  methods: {
+    save() {
+      this.$store.dispatch("Incoming/append", {
+        tanggal: this.tanggal,
+        shift: this.shift,
+        come: this.come,
+        paperId: this.paperId,
+        handBy: this.handBy,
+        received: this.received,
+        items: this.items,
+      });
+    },
+    add() {
+      this.items.unshift({
+        item: this.item,
+        qty: this.qty,
+        tgl: this.tgl,
+      });
+    },
+  },
+  components: {
+    Select,
+    Input,
+    Button,
+    Table,
   },
 };
 </script>

@@ -1,6 +1,10 @@
 <template>
-  <select :class="selectTipe" @change="$emit('selectedd', $event.target.value)">
-    <option v-for="op in options" :key="op">
+  <select
+    :id="id"
+    :class="selectTipe"
+    @change="$emit('selectedd', $event.target.value)"
+  >
+    <option v-for="op in options" :key="op" :value="op">
       {{ op }}
     </option>
   </select>
@@ -10,6 +14,7 @@
 export default {
   name: "Select",
   props: {
+    id: String,
     class: String,
     options: {
       type: Array,
@@ -22,8 +27,9 @@ export default {
   emits: ["selectedd"],
   computed: {
     selectTipe() {
-      let className = ["select", "select-bordered", this.class.split("")];
+      let className = ["select", "select-bordered"];
 
+      if (this.class) className.push(this.class.split(" "));
       if (this.tipe.includes("primary")) className.push("select-primary");
       if (this.tipe.includes("secondary")) className.push("select-secondary");
       if (this.tipe.includes("accent")) className.push("select-accent");

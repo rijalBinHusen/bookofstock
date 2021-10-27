@@ -22,6 +22,7 @@ export default {
     },
     tipe: String,
     placeholder: String,
+    small: Boolean,
   },
   emits: ["send"],
   methods: {
@@ -33,6 +34,7 @@ export default {
     formTipe() {
       let className = ["input"];
 
+      if (this.small) className.push("input-sm");
       if (this.tipe.includes("primary")) className.push("input-primary");
       if (this.tipe.includes("secondary")) className.push("input-secondary");
       if (this.tipe.includes("accent")) className.push("input-accent");

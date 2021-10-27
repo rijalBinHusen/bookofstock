@@ -4,6 +4,7 @@ import Vehicles from "./Module/Vehicles";
 import Impor from "./Module/Import";
 import Sorder from "./Module/Sorder";
 import Localbase from "../Localbase";
+import Incoming from "./Module/Incoming";
 
 export default createStore({
   state: {
@@ -89,5 +90,6 @@ export default createStore({
     Localbase,
     Impor,
     Sorder,
+Incoming
   },
 });

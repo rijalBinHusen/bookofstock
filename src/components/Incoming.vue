@@ -31,13 +31,16 @@
       </a> -->
     </div>
 
-    <div id="incoming_table">incoming table</div>
+    <!-- <div id="incoming_table">incoming table</div> -->
+    <Table :contents="lists" v-if="lists.length > 0" />
+
   </div>
 </template>
 
 <script>
 // Import button
 import Button from "./elements/Button.vue";
+import Table from "./elements/Table.vue";
 
 export default {
   name: "incoming",
@@ -57,6 +60,12 @@ export default {
   },
   components: {
     Button,
+    Table,
+  },
+  computed: {
+    lists() {
+      return this.$store.getters["Incoming/lists"];
+    },
   },
 };
 </script>
