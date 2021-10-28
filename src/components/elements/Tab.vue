@@ -1,10 +1,10 @@
 <template>
   <div class="tabs tabs-boxed">
     <a
-      class="tab"
       v-for="tab in lists"
       :key="tab.name"
-      @click="select($event, tab.name)"
+      :class="['tab', active == tab.name ? 'tab-active' : '']"
+      @click="select(tab.name)"
     >
       {{ tab.title }}
     </a>
@@ -19,14 +19,11 @@ export default {
       type: Array,
       required: true,
     },
+    active: String,
   },
   emits: ["select"],
   methods: {
-    select(ev, name) {
-      document.querySelectorAll(".tab").forEach((el) => {
-        el.classList.remove("tab-active");
-      });
-      ev.target.classList += " tab-active";
+    select(name) {
       this.$emit("select", name);
     },
   },

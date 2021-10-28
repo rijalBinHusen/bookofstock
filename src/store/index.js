@@ -5,11 +5,11 @@ import Impor from "./Module/Import";
 import Sorder from "./Module/Sorder";
 import Localbase from "../Localbase";
 import Incoming from "./Module/Incoming";
+import Gudang from "./Module/Gudang";
 
 export default createStore({
   state: {
     form: "",
-    gudang: false,
   },
   mutations: {
     changeForm(state, val) {
@@ -17,29 +17,15 @@ export default createStore({
       // open modal
       window.location.href = "#my-modal";
     },
-    gudang(state, val) {
-      state.gudang = val;
-    },
   },
   actions: {
     changeForm({ commit }, val) {
       commit("changeForm", val);
     },
-    gudang({ commit }, val) {
-      commit("gudang", val);
-    },
   },
   getters: {
     form(state) {
       return state.form;
-    },
-    gudang(state) {
-      if (state.gudang) {
-        return state.gudang;
-      } else {
-        window.location.href = "#my-modal";
-        state.form = "ListGudang";
-      }
     },
     dateFormat: () => (a) => {
       const a001 = a[1] ? new Date(a[1]) : new Date();
@@ -91,5 +77,6 @@ export default createStore({
     Impor,
     Sorder,
     Incoming,
+    Gudang,
   },
 });

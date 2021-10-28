@@ -7,6 +7,7 @@
           <th v-for="head in keys" :key="head">
             {{ head }}
           </th>
+          <th v-if="options">options</th>
         </tr>
       </thead>
       <tbody>
@@ -17,6 +18,24 @@
         >
           <th>{{ index + 1 }}</th>
           <td v-for="val in content" :key="val">{{ val }}</td>
+          <td v-if="options">
+            <Button
+              v-if="options.includes('edit')"
+              primary
+              value="Edit"
+              type="button"
+              small
+              :datanya="content[keyData]"
+              @trig="$emit('edit', $event)"
+            />
+            <Button
+              v-if="options.includes('delete')"
+              secondary
+              value="hapus"
+              type="button"
+              small
+            />
+          </td>
         </tr>
       </tbody>
     </table>
@@ -24,14 +43,21 @@
 </template>
 
 <script>
+import Button from "./Button.vue";
 export default {
   name: "Table",
   props: {
+    keyData: String,
     style: Object,
     contents: {
       type: Object,
       required: true,
     },
+    options: Array,
+  },
+  emits: ["edit", "hapus"],
+  components: {
+    Button,
   },
   computed: {
     keys() {

@@ -16,9 +16,9 @@
 <script>
 import IncomingForm from "./IncomingForm.vue";
 import VehiclesForm from "./VehiclesForm.vue";
-import ListGudang from "./ListGudang.vue";
+import ListGudang from "./parts/ListGudang.vue";
 import importSorder from "./ImportSorder.vue";
-import VehiclesDetails from "./VehiclesDetails.vue"
+import VehiclesDetails from "./VehiclesDetails.vue";
 
 export default {
   name: "Modal",
@@ -27,7 +27,7 @@ export default {
     VehiclesForm,
     ListGudang,
     importSorder,
-    VehiclesDetails
+    VehiclesDetails,
   },
   computed: {
     form() {

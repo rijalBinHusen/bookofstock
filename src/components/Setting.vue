@@ -1,37 +1,32 @@
 <template>
   <div class="border-r-2 p-6 h-full">
-    <Tab :lists="tabs" />
-    <!-- <p class="text-3xl">
-      Daftar gudang
-      <a
-        class="btn btn-outline btn-accent"
-        @click="changeForm('IncomingForm')"
-        href="#my-modal"
-      >
-        <font-awesome-icon
-          icon="plus-square"
-          style="font-size: 30px; color: black"
-        />
-      </a>
-    </p> -->
+    <Tab
+      :lists="tabs"
+      @select="activeComponent = $event"
+      :active="activeComponent"
+    />
+    <component :is="activeComponent"></component>
   </div>
 </template>
 
 <script>
 import Tab from "./elements/Tab.vue";
+import ListGudang from "./parts/ListGudang.vue";
 
 export default {
   name: "Setting",
   data() {
     return {
       tabs: [
-        { name: "gudang", title: "Daftar gudang" },
+        { name: "ListGudang", title: "Daftar gudang" },
         { name: "item", title: "Daftar item" },
       ],
+      activeComponent: "ListGudang",
     };
   },
   components: {
     Tab,
+    ListGudang,
   },
 };
 </script>

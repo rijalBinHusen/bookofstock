@@ -21,7 +21,10 @@ export default {
     accent: Boolean,
     ghost: Boolean,
     value: String,
-    type: String,
+    type: {
+      type: String,
+      required: true,
+    },
     class: String,
     href: String,
     icon: String,

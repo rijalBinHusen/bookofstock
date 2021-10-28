@@ -43,8 +43,8 @@ export default {
     // get vehicles data
     // this.$store.dispatch("Sorder/getStart");
     // this.$store.dispatch("Vehicles/getStart");
-    // // check is the user selected the warehouse;
-    // this.$store.getters["gudang"];
+    // Get lists gudang
+    this.$store.dispatch("Gudang/gudang");
   },
 };
 </script>
