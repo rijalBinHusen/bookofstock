@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-base-200 h-screen border-r-2 border-black">
+  <div class="bg-base-200 min-h-screen border-r-2 border-black">
     <div
       :class="['w-full p-2 text-2xl', status ? 'text-right ' : 'text-center']"
     >
