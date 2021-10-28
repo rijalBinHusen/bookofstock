@@ -10,8 +10,8 @@
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
 import Home from "./components/Home.vue";
-import Sidebar from "./components/Sidebar.vue";
-import Modal from "./components/Modal.vue";
+import Sidebar from "./components/parts/Sidebar.vue";
+import Modal from "./components/parts/Modal.vue";
 
 export default {
   name: "App",

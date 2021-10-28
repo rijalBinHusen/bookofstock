@@ -1,5 +1,5 @@
 <template>
-  <div class="border-r-2 p-6 h-full">
+  <div class="border-r-2 p-6 min-h-full">
     <Tab
       :lists="tabs"
       @select="activeComponent = $event"
@@ -12,6 +12,7 @@
 <script>
 import Tab from "./elements/Tab.vue";
 import ListGudang from "./parts/ListGudang.vue";
+import ListItem from "./parts/ListItem.vue";
 
 export default {
   name: "Setting",
@@ -19,7 +20,7 @@ export default {
     return {
       tabs: [
         { name: "ListGudang", title: "Daftar gudang" },
-        { name: "item", title: "Daftar item" },
+        { name: "ListItem", title: "Daftar item" },
       ],
       activeComponent: "ListGudang",
     };
@@ -27,6 +28,7 @@ export default {
   components: {
     Tab,
     ListGudang,
+    ListItem,
   },
 };
 </script>

@@ -101,7 +101,7 @@
 </template>
 
 <script>
-import TimePicker from "./TimePicker.vue";
+import TimePicker from "./parts/TimePicker.vue";
 
 export default {
   name: "VehiclesForm.vue",

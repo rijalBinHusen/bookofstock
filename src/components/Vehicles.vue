@@ -70,7 +70,7 @@
 </template>
 
 <script>
-import Datatable from "./Datatable.vue";
+import Datatable from "./parts/Datatable.vue";
 
 export default {
   name: "Vehicles",

@@ -1,5 +1,5 @@
 <template>
-  <div class="rounded w-2/6 mt-2 p-2 bg-base-200" style="min-height: 400px">
+  <div class="rounded md:w-3/6 mt-2 p-2 bg-base-200" style="min-height: 400px">
     <h1 class="text-2xl mb-2">Daftar gudang</h1>
     <form @submit.prevent="send" class="mb-2">
       <Input
@@ -18,13 +18,24 @@
       :options="['edit']"
       keyData="id"
       @edit="edit($event)"
-    />
+      v-slot:default="slotProps"
+    >
+      <Button
+        secondary
+        value="Disabled"
+        type="button"
+        small
+        class="ml-2"
+        :datanya="slotProps.id"
+      />
+    </Table>
   </div>
 </template>
 
 <script>
 import Input from "../elements/Forms/Input.vue";
 import Table from "../elements/Table.vue";
+import Button from "../elements/Button.vue"
 
 export default {
   name: "ListGudang",
@@ -64,6 +75,7 @@ export default {
   components: {
     Input,
     Table,
+    Button,
   },
   mounted() {
     this.getGudang();

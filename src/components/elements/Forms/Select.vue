@@ -4,8 +4,8 @@
     :class="selectTipe"
     @change="$emit('selectedd', $event.target.value)"
   >
-    <option v-for="op in options" :key="op" :value="op">
-      {{ op }}
+    <option v-for="op in options" :key="op" :value="op[value]">
+      {{ op[text] }}
     </option>
   </select>
 </template>
@@ -14,10 +14,12 @@
 export default {
   name: "Select",
   props: {
+    value: String,
+    text: String,
     id: String,
     class: String,
     options: {
-      type: Array,
+      type: Object,
       required: true,
     },
     tipe: {

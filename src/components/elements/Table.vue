@@ -28,6 +28,7 @@
               :datanya="content[keyData]"
               @trig="$emit('edit', $event)"
             />
+            <slot :id="content[keyData]"></slot>
             <Button
               v-if="options.includes('delete')"
               secondary
