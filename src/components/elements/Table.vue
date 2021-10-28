@@ -4,7 +4,7 @@
       <thead>
         <tr>
           <th>No</th>
-          <th v-for="head in keys" :key="head">
+          <th v-for="head in thead" :key="head">
             {{ head }}
           </th>
           <th v-if="options">options</th>
@@ -14,10 +14,10 @@
         <tr
           class="hover"
           v-for="(content, index) in contents"
-          :key="content[keys[0]]"
+          :key="content[thead[0]]"
         >
           <th>{{ index + 1 }}</th>
-          <td v-for="val in content" :key="val">{{ val }}</td>
+          <td v-for="val in tbody" :key="content[val]">{{ content[val] }}</td>
           <td v-if="options">
             <Button
               v-if="options.includes('edit')"
@@ -28,7 +28,7 @@
               :datanya="content[keyData]"
               @trig="$emit('edit', $event)"
             />
-            <slot :id="content[keyData]"></slot>
+            <slot :prop="content"></slot>
             <Button
               v-if="options.includes('delete')"
               secondary
@@ -55,15 +55,18 @@ export default {
       required: true,
     },
     options: Array,
+    thead: {
+      type: Array,
+      required: true,
+    },
+    tbody: {
+      type: Array,
+      required: true,
+    },
   },
   emits: ["edit", "hapus"],
   components: {
     Button,
-  },
-  computed: {
-    keys() {
-      return Object.keys(this.contents[0]);
-    },
   },
 };
 </script>

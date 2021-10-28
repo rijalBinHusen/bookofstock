@@ -34,11 +34,7 @@ const Gudang = {
     },
     update({ commit }, value) {
       commit("update", value);
-      Localbase.update(
-        "gudang",
-        { id: value.id },
-        { name_warehouse: value.name_warehouse }
-      );
+      Localbase.update("gudang", { id: value.id }, value);
     },
     // Get lists gudang
     gudang({ commit }) {

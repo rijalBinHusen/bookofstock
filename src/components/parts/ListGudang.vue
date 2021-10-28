@@ -1,5 +1,8 @@
 <template>
-  <div class="rounded md:w-3/6 mt-2 p-2 bg-base-200" style="min-height: 400px">
+  <div
+    class="rounded md:max-w-md mt-2 p-2 bg-base-200"
+    style="min-height: 400px"
+  >
     <h1 class="text-2xl mb-2">Daftar gudang</h1>
     <form @submit.prevent="send" class="mb-2">
       <Input
@@ -19,14 +22,18 @@
       keyData="id"
       @edit="edit($event)"
       v-slot:default="slotProps"
+      :thead="['Nama gudang']"
+      :tbody="['name_warehouse']"
     >
       <Button
-        secondary
-        value="Disabled"
+        :secondary="slotProps.prop.status == false"
+        :primary="slotProps.prop.status == true"
+        :value="slotProps.prop.status === true ? 'Enabled' : 'Disabled'"
         type="button"
         small
         class="ml-2"
-        :datanya="slotProps.id"
+        :datanya="slotProps.prop.id"
+        @trig="send($event)"
       />
     </Table>
   </div>
@@ -35,7 +42,7 @@
 <script>
 import Input from "../elements/Forms/Input.vue";
 import Table from "../elements/Table.vue";
-import Button from "../elements/Button.vue"
+import Button from "../elements/Button.vue";
 
 export default {
   name: "ListGudang",
@@ -48,7 +55,7 @@ export default {
     };
   },
   methods: {
-    send() {
+    send(id) {
       if (this.gudang) {
         // if update
         if (this.id) {
@@ -57,9 +64,15 @@ export default {
             name_warehouse: this.gudang,
           });
           this.button = "Tambah";
-          this.getGudang();
         } else this.$store.dispatch("Gudang/append", this.gudang);
       }
+      // if toggle disable enable
+      else if (id) {
+        let filt = this.lists.filter((val) => val.id === id)[0];
+        filt.status = !filt.status;
+        this.$store.dispatch("Gudang/update", filt);
+      }
+      this.getGudang();
       this.gudang = "";
     },
     getGudang() {
