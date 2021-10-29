@@ -6,6 +6,7 @@ import Sorder from "./Module/Sorder";
 import Localbase from "../Localbase";
 import Incoming from "./Module/Incoming";
 import Gudang from "./Module/Gudang";
+import Group from "./Module/Group";
 
 export default createStore({
   state: {
@@ -78,5 +79,6 @@ export default createStore({
     Sorder,
     Incoming,
     Gudang,
+    Group,
   },
 });

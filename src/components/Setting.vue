@@ -13,6 +13,7 @@
 import Tab from "./elements/Tab.vue";
 import ListGudang from "./parts/ListGudang.vue";
 import ListItem from "./parts/ListItem.vue";
+import ListGroup from "./parts/ListGroup.vue";
 
 export default {
   name: "Setting",
@@ -30,6 +31,7 @@ export default {
     Tab,
     ListGudang,
     ListItem,
+    ListGroup,
   },
 };
 </script>

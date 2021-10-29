@@ -45,6 +45,8 @@ export default {
     // this.$store.dispatch("Vehicles/getStart");
     // Get lists gudang
     this.$store.dispatch("Gudang/gudang");
+    // Get lists group item
+    this.$store.dispatch("Group/group");
   },
 };
 </script>

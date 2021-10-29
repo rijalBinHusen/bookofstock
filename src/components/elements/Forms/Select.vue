@@ -45,6 +45,11 @@ export default {
 
       return className.join(" ");
     },
+    activated() {
+      this.$emit("selectedd", this.options[0][this.value]);
+      console.log(this.options[0][this.value]);
+      return "";
+    },
   },
 };
 </script>
