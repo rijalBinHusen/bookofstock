@@ -47,6 +47,9 @@ const Gudang = {
     gudang(state) {
       return state.lists;
     },
+    gudangActive(state) {
+      return state.lists.filter((val) => val.status === true);
+    },
   },
 };
 

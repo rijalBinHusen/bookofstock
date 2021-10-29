@@ -20,6 +20,7 @@ export default {
     return {
       tabs: [
         { name: "ListGudang", title: "Daftar gudang" },
+        { name: "ListGroup", title: "Daftar Group item" },
         { name: "ListItem", title: "Daftar item" },
       ],
       activeComponent: "ListGudang",

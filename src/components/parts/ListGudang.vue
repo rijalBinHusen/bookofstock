@@ -22,8 +22,8 @@
       keyData="id"
       @edit="edit($event)"
       v-slot:default="slotProps"
-      :thead="['Nama gudang']"
-      :tbody="['name_warehouse']"
+      :thead="['id', 'Nama gudang']"
+      :tbody="['id', 'name_warehouse']"
     >
       <Button
         :secondary="slotProps.prop.status == false"

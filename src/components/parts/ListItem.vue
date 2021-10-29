@@ -11,6 +11,14 @@
       <Input tipe="primary" placeholder="Nama item" small group />
       <Button type="button" class="btn" primary value="Add" small />
     </div>
+    <Datatable
+      :datanya="lists"
+      :option="['edit']"
+      :heads="['kode']"
+      id="datatable-items"
+      keydata="id"
+      no
+    />
   </div>
 </template>
 
@@ -18,17 +26,24 @@
 import Button from "../elements/Button.vue";
 import Input from "../elements/Forms/Input.vue";
 import Select from "../elements/Forms/Select.vue";
+import Datatable from "./Datatable.vue";
 
 export default {
   name: "ListItem",
+  data() {
+    return {
+      lists: [],
+    };
+  },
   components: {
     Button,
     Input,
     Select,
+    Datatable,
   },
   computed: {
     listsGudang() {
-      return this.$store.getters["Gudang/gudang"];
+      return this.$store.getters["Gudang/gudangActive"];
     },
   },
 };

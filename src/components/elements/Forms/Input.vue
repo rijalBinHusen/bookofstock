@@ -27,10 +27,7 @@
 export default {
   name: "Input",
   props: {
-    label: {
-      type: String,
-      required: true,
-    },
+    label: String,
     tipe: String,
     placeholder: String,
     small: Boolean,
