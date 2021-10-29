@@ -25,7 +25,7 @@
       />
     </form>
     <Table
-      v-if="lists.length > 0"
+      v-if="lists && lists.length > 0"
       :contents="lists"
       :options="['edit']"
       keyData="id"
@@ -60,20 +60,21 @@ export default {
     return {
       gudang: "",
       group: "",
-      lists: [],
       button: "Tambah",
       id: "",
     };
   },
   methods: {
     send(id) {
-      if (this.group && this.gudang) {
+      if ((this.group && this.gudang) || id) {
         // if update
-        if (this.id) {
-          this.$store.dispatch("Group/update", {
-            id: this.id,
-            name_group: this.group,
-          });
+        if (this.id || id) {
+          let target = this.id || id;
+          let filt = this.lists.filter((val) => val.id === target)[0];
+          // if toggle disable enable
+          if (id) filt.status = !filt.status;
+          else filt.name_group = this.group;
+          this.$store.dispatch("Group/update", filt);
           this.button = "Tambah";
         } else
           this.$store.dispatch("Group/append", {
@@ -83,16 +84,6 @@ export default {
           });
         this.group = "";
       }
-      // if toggle disable enable
-      else if (id) {
-        let filt = this.lists.filter((val) => val.id === id)[0];
-        filt.status = !filt.status;
-        this.$store.dispatch("Group/update", filt);
-        this.getGroup();
-      }
-    },
-    getGroup() {
-      this.lists = this.$store.getters["Group/group"];
     },
     edit(ev) {
       let filt = this.lists.filter((val) => val.id === ev)[0];
@@ -114,9 +105,9 @@ export default {
         ...this.$store.getters["Gudang/gudangActive"],
       ];
     },
-  },
-  mounted() {
-    this.getGroup();
+    lists() {
+      return this.$store.getters["Group/groupByWarehouse"](this.gudang);
+    },
   },
 };
 </script>
