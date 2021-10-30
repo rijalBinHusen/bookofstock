@@ -26,19 +26,21 @@
             v-for="head in heads"
             :key="head"
             @click="
-            sortDedata(head, deData.sortAsc);
-            deData.sortAsc = !deData.sortAsc;
+              sortDedata(head, deData.sortAsc);
+              deData.sortAsc = !deData.sortAsc;
             "
             scope="col"
           >
             <span
               style="font-size: 20px; font-weight: bolder"
               v-if="!deData.sortAsc && deData.nowSort == head"
-            >&darr;</span>
+              >&darr;</span
+            >
             <span
               style="font-size: 20px; font-weight: bolder"
               v-if="deData.sortAsc && deData.nowSort == head"
-            >&uarr;</span>
+              >&uarr;</span
+            >
             {{ tulisanBaku(head) }}
           </th>
           <th v-if="option" scope="col">Option</th>
@@ -102,7 +104,8 @@
             'btn btn-primary',
             deData.currentPage == 0 || deData.currentPage == 1 ? 'hidden' : '',
           ]"
-        >&laquo;</a>
+          >&laquo;</a
+        >
 
         <a
           href="#"
@@ -115,7 +118,8 @@
           v-for="p in totalPage"
           :key="p"
           @click="toThePage(p)"
-        >{{ p }}</a>
+          >{{ p }}</a
+        >
 
         <a
           href="#"
@@ -126,9 +130,10 @@
               : '',
           ]"
           @click="
-          toThePage(deData.currentPage == 0 ? 2 : deData.currentPage + 1)
+            toThePage(deData.currentPage == 0 ? 2 : deData.currentPage + 1)
           "
-        >&raquo;</a>
+          >&raquo;</a
+        >
       </div>
     </div>
 
@@ -170,16 +175,16 @@ export default {
       deData: localStorage.getItem(this.id)
         ? JSON.parse(localStorage.getItem(this.id))
         : {
-          startRow: 0,
-          lengthRow: 5,
-          nowSort: null,
-          currentPage: 0,
-          searchInput: [],
-          searchKey: [],
-          rowLenght: 0,
-          allPages: 0,
-          sortAsc: true,
-        },
+            startRow: 0,
+            lengthRow: 5,
+            nowSort: null,
+            currentPage: 0,
+            searchInput: [],
+            searchKey: [],
+            rowLenght: 0,
+            allPages: 0,
+            sortAsc: true,
+          },
     };
   },
   computed: {
@@ -245,12 +250,12 @@ export default {
             ? [1, 2, 3]
             : [1, 2] //pages more than 2 or not
           : [
-            this.deData.currentPage - 1,
-            this.deData.currentPage,
-            this.deData.currentPage + 1 > this.deData.allPages
-              ? 1
-              : this.deData.currentPage + 1,
-          ];
+              this.deData.currentPage - 1,
+              this.deData.currentPage,
+              this.deData.currentPage + 1 > this.deData.allPages
+                ? 1
+                : this.deData.currentPage + 1,
+            ];
       }
     },
   },

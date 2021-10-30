@@ -3,9 +3,9 @@
     <div class="container my-4 p-1 gap-2 flex">
       <Select
         tipe="primary small"
-        :options="listsGudang"
+        :options="listsGroup"
         value="id"
-        text="name_warehouse"
+        text="name_group"
       />
       <Input tipe="primary" placeholder="Kode item" small group />
       <Input tipe="primary" placeholder="Nama item" small group />
@@ -13,7 +13,7 @@
     </div>
     <Datatable
       :datanya="lists"
-      :option="['edit']"
+      option
       :heads="['kode']"
       id="datatable-items"
       keydata="id"
@@ -42,8 +42,8 @@ export default {
     Datatable,
   },
   computed: {
-    listsGudang() {
-      return this.$store.getters["Gudang/gudangActive"];
+    listsGroup() {
+      return this.$store.getters["Group/groupActive"];
     },
   },
 };

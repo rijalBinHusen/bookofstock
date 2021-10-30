@@ -52,6 +52,9 @@ const Group = {
     groupByWarehouse: (state) => (warehouse) => {
       return state.lists.filter((val) => val.location === warehouse);
     },
+    groupActive(state) {
+      return state.lists.filter((val) => val.status);
+    },
   },
 };
 
