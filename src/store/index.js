@@ -27,14 +27,36 @@ export default createStore({
     // to add to indexeddb
     append({ commit }, value) {
       // value = {store: 'nameOfStore', obj: {object: 'to append to indexeddb'}, id: String
+      // the first letter of value.store must be capital e.g 'Group'
+
+      // create id to the record
       value.obj.id = Localbase.generateId(value.id);
-      Localbase.append(value.store, value.obj);
-      return value;
+      // insert record to indexeddb
+      Localbase.append(value.store.toLowerCase(), value.obj);
+      // commit to module e.g 'Group/append
+      commit(`${value.store}/append`, value.obj, { root: true });
+    },
+    // to update record in indexeddb
+    update({ commit }, value) {
+      // value = {store: 'nameOfStore', obj: {id: idOfDocument, object: 'to append to indexeddb'} }
+      // the first letter of value.store must be capital e.g 'Group'
+
+      // send to indexeddb
+      Localbase.update(
+        value.store.toLowerCase(),
+        { id: value.obj.id },
+        value.obj
+      );
+      // send to module
+      commit(`${value.store}/update`, value.obj, { root: true });
     },
     // Getting all data in indexeddb
     getStart({ commit }) {
+      // list of store
       let store = ["Group", "Gudang", "Item"];
+      // iterate the store
       store.forEach((val) => {
+        // call the get data functions
         Localbase.getData({
           store: val.toLowerCase(),
           orderBy: "id",

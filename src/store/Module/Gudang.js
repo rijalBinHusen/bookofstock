@@ -1,5 +1,3 @@
-import Localbase from "../../Localbase";
-
 const Gudang = {
   namespaced: true,
   state: {
@@ -10,7 +8,7 @@ const Gudang = {
       state.lists = value;
     },
     append(state, value) {
-      state.lists.push(value);
+      state.lists.unshift(value);
     },
     update(state, value) {
       state.lists = state.lists.map((val) => {
@@ -19,34 +17,19 @@ const Gudang = {
     },
   },
   actions: {
-    append({ commit, state }, value) {
+    // eslint-disable-next-line no-unused-vars
+    append({ dispatch, commit, state }, value) {
       // atur record yang akan dimasukkan
       let record = {
-        id: Localbase.generateId(
-          state.lists.length > 0 ? state.lists.slice(-1)[0].id : "WRH"
-        ),
-        name_warehouse: value,
+        store: "Gudang",
+        obj: value,
+        id: state.lists.length > 0 ? state.lists[0].id : "WRH",
       };
-      // simpan ke state
-      commit("append", record);
-      // Simpan ke indexeddb
-      Localbase.append("gudang", record);
-    },
-    update({ commit }, value) {
-      commit("update", value);
-      Localbase.update("gudang", { id: value.id }, value);
-    },
-    // Get lists gudang
-    gudang({ commit }) {
-      Localbase.getData({
-        store: "gudang",
-      }).then((result) => commit("gudang", result));
+      // send to root to append to indexeddb
+      dispatch("append", record, { root: true });
     },
   },
   getters: {
-    gudang(state) {
-      return state.lists;
-    },
     gudangActive(state) {
       return state.lists.filter((val) => val.status === true);
     },

@@ -4,7 +4,7 @@
     style="min-height: 400px"
   >
     <h1 class="text-2xl mb-2">Daftar gudang</h1>
-    <form @submit.prevent="send" class="mb-2">
+    <form @submit.prevent="send(false)" class="mb-2">
       <Input
         label="Nama gudang"
         tipe="primary"
@@ -12,11 +12,11 @@
         @send="gudang = $event"
         :button="button"
         :value="gudang"
-        @trig="send"
+        @trig="send(false)"
       />
     </form>
     <Table
-      v-if="lists.length > 0"
+      v-if="lists && lists.length > 0"
       :contents="lists"
       :options="['edit']"
       keyData="id"
@@ -49,28 +49,34 @@ export default {
   data() {
     return {
       gudang: "",
-      lists: [],
       button: "Tambah",
-      id: "",
+      update: {},
     };
   },
   methods: {
     send(id) {
       if (this.gudang) {
         // if update
-        if (this.id) {
-          this.$store.dispatch("Gudang/update", {
-            id: this.id,
-            name_warehouse: this.gudang,
-          });
+        if (this.update.id) {
+          // change the name warehouse of this.update
+          this.update.name_warehouse = this.gudang;
+          // send to vuex
+          this.$store.dispatch("update", { store: "Gudang", obj: this.update });
+          // change the button value
           this.button = "Tambah";
-        } else this.$store.dispatch("Gudang/append", this.gudang);
+        } else
+          this.$store.dispatch("Gudang/append", {
+            name_warehouse: this.gudang,
+            status: true,
+          });
       }
       // if toggle disable enable
       else if (id) {
         let filt = this.lists.filter((val) => val.id === id)[0];
+        // change the status
         filt.status = !filt.status;
-        this.$store.dispatch("Gudang/update", filt);
+        // send to vuex
+        this.$store.dispatch("update", { store: "Gudang", obj: filt });
       }
       this.getGudang();
       this.gudang = "";
@@ -90,8 +96,10 @@ export default {
     Table,
     Button,
   },
-  mounted() {
-    this.getGudang();
+  computed: {
+    lists() {
+      return this.$store.state.Gudang.lists;
+    },
   },
 };
 </script>
