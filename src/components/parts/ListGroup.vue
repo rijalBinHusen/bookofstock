@@ -61,20 +61,20 @@ export default {
       gudang: "",
       group: "",
       button: "Tambah",
-      id: "",
+      update: {},
     };
   },
   methods: {
     send(id) {
       if ((this.group && this.gudang) || id) {
         // if update
-        if (this.id || id) {
-          let target = this.id || id;
+        if (this.update.id || id) {
+          let target = this.update.id || id;
           let filt = this.lists.filter((val) => val.id === target)[0];
           // if toggle disable enable
           if (id) filt.status = !filt.status;
           else filt.name_group = this.group;
-          this.$store.dispatch("Group/update", filt);
+          this.$store.dispatch("update", { store: "Group", obj: filt });
           this.button = "Tambah";
         } else
           this.$store.dispatch("Group/append", {
@@ -88,7 +88,7 @@ export default {
     edit(ev) {
       let filt = this.lists.filter((val) => val.id === ev)[0];
       this.group = filt.name_group;
-      this.id = filt.id;
+      this.update = filt;
       this.button = "Update";
     },
   },

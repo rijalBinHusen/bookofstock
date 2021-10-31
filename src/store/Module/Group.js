@@ -1,5 +1,3 @@
-import Localbase from "../../Localbase";
-
 const Group = {
   namespaced: true,
   state: {
@@ -19,36 +17,18 @@ const Group = {
     },
   },
   actions: {
-    append({ commit, state }, value) {
+    // eslint-disable-next-line no-unused-vars
+    append({ dispatch, commit, state }, value) {
       // atur record yang akan dimasukkan
-      let record = Object.assign(
-        {
-          id: Localbase.generateId(
-            state.lists.length > 0 ? state.lists.slice(-1)[0].id : "GRP"
-          ),
-        },
-        value
-      );
-      // simpan ke state
-      commit("append", record);
-      // Simpan ke indexeddb
-      Localbase.append("group", record);
-    },
-    update({ commit }, value) {
-      commit("update", value);
-      Localbase.update("group", { id: value.id }, value);
-    },
-    // Get lists group
-    group({ commit }) {
-      Localbase.getData({
-        store: "group",
-      }).then((result) => commit("group", result));
+      let record = {
+        store: "Group",
+        obj: value,
+        id: state.lists.length > 0 ? state.lists.slice(-1)[0].id : "GRP",
+      };
+      dispatch("append", record, { root: true });
     },
   },
   getters: {
-    group(state) {
-      return state.lists;
-    },
     groupByWarehouse: (state) => (warehouse) => {
       return state.lists.filter((val) => val.location === warehouse);
     },
