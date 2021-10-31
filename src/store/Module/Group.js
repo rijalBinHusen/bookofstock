@@ -32,8 +32,15 @@ const Group = {
     groupByWarehouse: (state) => (warehouse) => {
       return state.lists.filter((val) => val.location === warehouse);
     },
-    groupActive(state) {
-      return state.lists.filter((val) => val.status);
+    groupActive(state, getters, rootState, rootGetters) {
+      // get all warehouse active
+      let warehouseActive = rootGetters["Gudang/gudangActive"].map(
+        (val) => val.id
+      );
+      // grab when warehouse active and status active
+      return state.lists.filter(
+        (val) => warehouseActive.includes(val.location) && val.status
+      );
     },
   },
 };
