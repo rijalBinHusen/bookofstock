@@ -73,7 +73,7 @@
           <td :key="r[key]" v-for="key in heads">{{ r[key] }}</td>
 
           <td v-if="option">
-            <slot :id="r[keydata]"></slot>
+            <slot :prop="r"></slot>
           </td>
         </tr>
       </tbody>

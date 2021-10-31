@@ -1,7 +1,8 @@
 <template>
   <div class="rounded mt-2 p-2 bg-base-200" style="min-height: 400px">
     <div class="container my-4 p-1 gap-2 flex">
-      <Select
+      <span class="py-1">Group item:</span
+      ><Select
         tipe="primary small"
         :options="listsGroup"
         value="id"
@@ -51,8 +52,18 @@
         small
         primary
         class="ml-2"
-        :datanya="slotProps.id"
+        :datanya="slotProps.prop.id"
         @trig="edit($event)"
+      />
+      <Button
+        :secondary="slotProps.prop.status == false"
+        :primary="slotProps.prop.status == true"
+        :value="slotProps.prop.status === true ? 'Enabled' : 'Disabled'"
+        type="button"
+        small
+        class="ml-2"
+        :datanya="slotProps.prop.id"
+        @trig="send($event)"
       />
     </Datatable>
   </div>
