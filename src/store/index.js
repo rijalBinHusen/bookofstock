@@ -7,6 +7,7 @@ import Localbase from "../Localbase";
 import Incoming from "./Module/Incoming";
 import Gudang from "./Module/Gudang";
 import Group from "./Module/Group";
+import Item from "./Module/Item";
 
 export default createStore({
   state: {
@@ -22,6 +23,26 @@ export default createStore({
   actions: {
     changeForm({ commit }, val) {
       commit("changeForm", val);
+    },
+    // to add to indexeddb
+    append({ commit }, value) {
+      // value = {store: 'nameOfStore', obj: {object: 'to append to indexeddb'}, id: String
+      value.obj.id = Localbase.generateId(value.id);
+      Localbase.append(value.store, value.obj);
+      return value;
+    },
+    // Getting all data in indexeddb
+    getStart({ commit }) {
+      let store = ["Group", "Gudang", "Item"];
+      store.forEach((val) => {
+        Localbase.getData({
+          store: val.toLowerCase(),
+          orderBy: "id",
+          desc: true,
+        }).then((result) =>
+          commit(`${val}/${val.toLowerCase()}`, result, { root: true })
+        );
+      });
     },
   },
   getters: {
@@ -80,5 +101,6 @@ export default createStore({
     Incoming,
     Gudang,
     Group,
+    Item,
   },
 });

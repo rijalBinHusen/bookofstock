@@ -41,12 +41,12 @@ export default {
   },
   mounted() {
     // get vehicles data
-    // this.$store.dispatch("Sorder/getStart");
+    this.$store.dispatch("getStart");
     // this.$store.dispatch("Vehicles/getStart");
     // Get lists gudang
-    this.$store.dispatch("Gudang/gudang");
+    // this.$store.dispatch("Gudang/gudang");
     // Get lists group item
-    this.$store.dispatch("Group/group");
+    // this.$store.dispatch("Group/group");
   },
 };
 </script>
