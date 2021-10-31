@@ -46,6 +46,7 @@
       no
       v-slot:default="slotProps"
     >
+      <!-- edit button -->
       <Button
         value="Edit"
         type="button"
@@ -55,6 +56,7 @@
         :datanya="slotProps.prop.id"
         @trig="edit($event)"
       />
+      <!-- Toggle disable button -->
       <Button
         :secondary="slotProps.prop.status == false"
         :primary="slotProps.prop.status == true"
@@ -65,6 +67,8 @@
         :datanya="slotProps.prop.id"
         @trig="send($event)"
       />
+      <!-- Button move to antoher group -->
+      <Dropdown primary small text="Move to" :options="listGroup" />
     </Datatable>
   </div>
 </template>
@@ -74,6 +78,7 @@ import Button from "../elements/Button.vue";
 import Input from "../elements/Forms/Input.vue";
 import Select from "../elements/Forms/Select.vue";
 import Datatable from "./Datatable.vue";
+import Dropdown from "../elements/Dropdown.vue";
 
 export default {
   name: "ListItem",
@@ -127,6 +132,7 @@ export default {
     Input,
     Select,
     Datatable,
+    Dropdown,
   },
   computed: {
     listsGroup() {
