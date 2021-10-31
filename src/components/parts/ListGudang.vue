@@ -78,16 +78,12 @@ export default {
         // send to vuex
         this.$store.dispatch("update", { store: "Gudang", obj: filt });
       }
-      this.getGudang();
       this.gudang = "";
-    },
-    getGudang() {
-      this.lists = this.$store.getters["Gudang/gudang"];
     },
     edit(ev) {
       let filt = this.lists.filter((val) => val.id === ev)[0];
       this.gudang = filt.name_warehouse;
-      this.id = filt.id;
+      this.update = filt;
       this.button = "Update";
     },
   },
