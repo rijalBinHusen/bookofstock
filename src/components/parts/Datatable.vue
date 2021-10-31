@@ -64,6 +64,7 @@
               @change="searchWord($event.target.value, key)"
             />
           </td>
+          <td v-if="option"></td>
         </tr>
         <!--end ofsearch form-->
 
@@ -101,7 +102,7 @@
           href="#"
           @click="toThePage(deData.currentPage - 1)"
           :class="[
-            'btn btn-primary',
+            'btn btn-primary btn-sm mr-1',
             deData.currentPage == 0 || deData.currentPage == 1 ? 'hidden' : '',
           ]"
           >&laquo;</a
@@ -110,7 +111,7 @@
         <a
           href="#"
           :class="[
-            'btn btn-primary',
+            'btn btn-primary btn-sm mr-1',
             deData.currentPage == p || (p == 1 && deData.currentPage == 0)
               ? 'active'
               : '',
@@ -124,7 +125,7 @@
         <a
           href="#"
           :class="[
-            'btn btn-primary',
+            'btn btn-primary btn-sm mr-1',
             deData.startRow + Number(deData.lengthRow) >= deData.rowLenght
               ? 'hidden'
               : '',
